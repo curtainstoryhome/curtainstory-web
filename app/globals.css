@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+:root {
+  --background: #faf8f4;
+  --foreground: #221d19;
+
+  --color-cream: #faf8f4;
+  --color-cream-deep: #eee8df;
+  --color-ink: #221d19;
+  --color-ink-soft: #6a605a;
+
+  --color-brand-50: #faf5ec;
+  --color-brand-100: #efe6d6;
+  --color-brand-200: #ddcbaf;
+  --color-brand-400: #c0a273;
+  --color-brand-500: #a68541;
+  --color-brand-600: #896a30;
+  --color-brand-700: #6d5327;
+
+  --color-brand-800: #55401d;
+  --color-line: #04833a;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-cream: var(--color-cream);
+  --color-cream-deep: var(--color-cream-deep);
+  --color-ink: var(--color-ink);
+  --color-ink-soft: var(--color-ink-soft);
+
+  --color-brand-50: var(--color-brand-50);
+  --color-brand-100: var(--color-brand-100);
+  --color-brand-200: var(--color-brand-200);
+  --color-brand-400: var(--color-brand-400);
+  --color-brand-500: var(--color-brand-500);
+  --color-brand-600: var(--color-brand-600);
+  --color-brand-700: var(--color-brand-700);
+
+  --color-brand-800: var(--color-brand-800);
+  --color-line: var(--color-line);
+
+  --font-heading: var(--font-kanit);
+  --font-sans: var(--font-sarabun);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+@keyframes marquee-up {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes marquee-down {
+  from {
+    transform: translateY(-50%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.animate-marquee-up {
+  animation: marquee-up linear infinite;
+}
+
+.animate-marquee-down {
+  animation: marquee-down linear infinite;
+}
+
+/* Climbs quickly then eases off, so it reads as "working" without ever
+   pretending to finish before the page actually arrives. */
+@keyframes nav-progress {
+  0% {
+    width: 0;
+  }
+  40% {
+    width: 55%;
+  }
+  100% {
+    width: 90%;
+  }
+}
+
+.animate-nav-progress {
+  animation: nav-progress 1.6s ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee-up,
+  .animate-marquee-down {
+    animation: none;
+  }
+  /* Still shown, just without the crawl. */
+  .animate-nav-progress {
+    animation: none;
+    width: 60%;
+  }
+}
