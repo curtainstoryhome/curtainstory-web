@@ -16,7 +16,7 @@ export default function AdminLoginPage() {
         {/* Names the shop, so whoever opens this page knows exactly whose
             system it is rather than seeing a bare login box. */}
         <p className="font-heading text-lg font-semibold tracking-tight text-ink">
-          CURTAIN STORY
+          CURTAIN STORY HOME
         </p>
         <p className="mt-0.5 text-[11px] font-medium uppercase tracking-[0.18em] text-brand-700">
           ระบบจัดการเว็บไซต์ของร้าน

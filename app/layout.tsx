@@ -61,7 +61,7 @@ export async function generateMetadata(): Promise<Metadata> {
       "ซักผ้าม่าน",
       "ผ้าม่านลาดพร้าว",
       "ผ้าม่านวังทองหลาง",
-      "CURTAIN STORY",
+      "CURTAIN STORY HOME",
     ],
     // Relative, so it resolves against metadataBase and only claims the home
     // page. Every other page sets its own — a shared absolute canonical would

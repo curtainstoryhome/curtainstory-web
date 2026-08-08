@@ -11,7 +11,7 @@ import { getPublishedProjects, getBusinessInfo,
 export const metadata: Metadata = {
   title: "ผลงานของเรา",
   description:
-    "รวมผลงานติดตั้งผ้าม่าน วอลล์เปเปอร์ มู่ลี่ และฉากกั้นห้องจริงจากบ้าน คอนโด และอาคารสำนักงานในกรุงเทพฯ โดย CURTAIN STORY ดูรูปจริงทุกงานก่อนตัดสินใจ",
+    "รวมผลงานติดตั้งผ้าม่าน วอลล์เปเปอร์ มู่ลี่ และฉากกั้นห้องจริงจากบ้าน คอนโด และอาคารสำนักงานในกรุงเทพฯ โดย CURTAIN STORY HOME ดูรูปจริงทุกงานก่อนตัดสินใจ",
   alternates: { canonical: "/portfolio" },
 };
 
@@ -30,7 +30,7 @@ export default async function PortfolioPage() {
         title={t("portfolio_hero_title", "ผลงานของเรา")}
         description={t("portfolio_hero_desc", "ตัวอย่างงานติดตั้งจริง ที่เราภูมิใจนำเสนอ ขอบคุณลูกค้าทุกท่านที่ไว้วางใจให้เราดูแล คลิกที่ผลงานเพื่อดูรูปเพิ่มเติม")}
         image={projects[0]?.images[0]?.image_url}
-        imageAlt="ตัวอย่างผลงานติดตั้งผ้าม่านจริง โดย CURTAIN STORY"
+        imageAlt="ตัวอย่างผลงานติดตั้งผ้าม่านจริง โดย CURTAIN STORY HOME"
       />
 
       <section className="py-14 sm:py-16">

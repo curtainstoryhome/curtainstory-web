@@ -82,7 +82,7 @@ export default async function ServiceDetailPage(
         title={service.title}
         description={service.summary}
         image={service.image_url}
-        imageAlt={`บริการ${service.title} โดย CURTAIN STORY`}
+        imageAlt={`บริการ${service.title} โดย CURTAIN STORY HOME`}
         backHref="/services"
         backLabel="บริการทั้งหมด"
       />

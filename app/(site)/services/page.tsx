@@ -12,7 +12,7 @@ import { getServices, getBusinessInfo,
 export const metadata: Metadata = {
   title: "บริการของเรา",
   description:
-    "ผ้าม่าน วอลล์เปเปอร์ มู่ลี่ มุ้งลวด เหล็กดัด ฟิล์มกรองแสง และบริการซักผ้าม่าน โดย CURTAIN STORY",
+    "ผ้าม่าน วอลล์เปเปอร์ มู่ลี่ มุ้งลวด เหล็กดัด ฟิล์มกรองแสง และบริการซักผ้าม่าน โดย CURTAIN STORY HOME",
   alternates: { canonical: "/services" },
 };
 
@@ -30,7 +30,7 @@ export default async function ServicesPage() {
         title={t("services_hero_title", "บริการของเรา")}
         description={t("services_hero_desc", "รับออกแบบ ตัดเย็บ และติดตั้ง ผ้าม่าน วอลล์เปเปอร์ มู่ลี่ และงานตกแต่งหน้าต่างครบวงจร ด้วยทีมงานมืออาชีพและวัสดุคุณภาพสูง")}
         image={services[0]?.image_url}
-        imageAlt="งานผ้าม่านและงานตกแต่งหน้าต่าง โดย CURTAIN STORY"
+        imageAlt="งานผ้าม่านและงานตกแต่งหน้าต่าง โดย CURTAIN STORY HOME"
       />
 
       <section className="py-14 sm:py-16">

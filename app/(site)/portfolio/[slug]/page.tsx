@@ -89,7 +89,7 @@ export default async function ProjectDetailPage(
         title={project.title}
         description={project.description}
         image={project.images[0]?.image_url}
-        imageAlt={`ผลงานติดตั้ง${project.title} โดย CURTAIN STORY`}
+        imageAlt={`ผลงานติดตั้ง${project.title} โดย CURTAIN STORY HOME`}
         backHref="/portfolio"
         backLabel="ผลงานทั้งหมด"
       />

@@ -40,7 +40,7 @@ export default function GlobalError({
       >
         <div style={{ maxWidth: 420 }}>
           <p style={{ fontSize: 13, fontWeight: 600, color: "#6d5327", margin: 0 }}>
-            CURTAIN STORY
+            CURTAIN STORY HOME
           </p>
           <h1 style={{ fontSize: 24, margin: "12px 0 0", lineHeight: 1.35 }}>
             ขณะนี้เว็บไซต์ขัดข้องชั่วคราว
