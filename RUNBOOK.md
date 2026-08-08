@@ -74,11 +74,14 @@ database must be reachable or the build fails.
 immediately; no deploy needed. `revalidatePath` is called by the server
 actions.
 
-**Moving to the real domain** — the shop has chosen **`curtainstoryhome.com`**
-(`curtainstory.com` is held by a domain marketplace and priced accordingly).
-Attach it in the Vercel dashboard and deploy once. `lib/site-url.ts` reads
-Vercel's production domain, so canonical URLs, the sitemap and social share
-images all follow automatically. There is no hardcoded domain to update.
+**The real domain is live.** The shop registered **`curtainstoryhome.com`**
+(`curtainstory.com` was held by a domain marketplace and priced accordingly)
+and it is attached in Vercel, with the apex redirecting to `www` at the DNS
+level. `lib/site-url.ts` reads Vercel's production domain, so canonical URLs,
+the sitemap and social share images follow automatically — but only as of
+the deployment that ran *after* the domain was attached. If canonicals ever
+point at the `.vercel.app` address again, the fix is a redeploy, not a code
+change: the value comes from `VERCEL_PROJECT_PRODUCTION_URL` at build time.
 
 **The old site is still live.** `www.buitincurtains.com` returns 200 and is
 competing with this one for the same business. It is on Z.com (WordPress,
