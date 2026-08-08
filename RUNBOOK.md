@@ -2,9 +2,11 @@
 
 Operational notes for whoever maintains this site next.
 
-**This repository is public. Never commit passwords, API keys, customer names,
-phone numbers or email addresses into it.** Credentials belong in the Vercel
-and Supabase dashboards, and are handed over separately.
+**Keep credentials out of this repository.** Passwords, API keys and anything
+personal about a customer belong in the Vercel and Supabase dashboards, and are
+handed over separately. `.env.local` is covered by `.gitignore` — keep it that
+way. Treat the repo as if it will be shared, because it will be: the shop is
+meant to end up holding a copy.
 
 ---
 
