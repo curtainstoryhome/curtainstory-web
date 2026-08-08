@@ -3,12 +3,15 @@ import { ToastProvider } from "@/components/admin/Toast";
 import AdminNav from "@/components/admin/AdminNav";
 import LogoutButton from "@/components/admin/LogoutButton";
 import NavigationProgress from "@/components/NavigationProgress";
+import { getBusinessInfo } from "@/lib/data";
 
-export default function AdminProtectedLayout({
+export default async function AdminProtectedLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const business = await getBusinessInfo();
+
   return (
     <ToastProvider>
       <div className="min-h-screen bg-cream">
@@ -24,7 +27,7 @@ export default function AdminProtectedLayout({
                 className="rounded-lg leading-tight focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-700"
               >
                 <span className="block font-heading text-base font-semibold text-ink">
-                  CURTAIN STORY
+                  {business.name}
                 </span>
                 <span className="block text-[10px] font-medium uppercase tracking-[0.16em] text-brand-700">
                   ระบบจัดการเว็บไซต์

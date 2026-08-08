@@ -88,7 +88,7 @@ export default function Header({ business }: { business: BusinessInfo }) {
                 scrolled ? "text-base" : "text-lg"
               }`}
             >
-              CURTAIN STORY
+              {business.name}
             </span>
             {/* Drops away once scrolled so the bar can be genuinely thin. */}
             <span
