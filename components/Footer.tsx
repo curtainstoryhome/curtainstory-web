@@ -113,9 +113,23 @@ export default function Footer({ business }: { business: BusinessInfo }) {
       </Container>
 
       <div className="border-t border-brand-100 py-5">
-        <Container>
+        <Container className="flex flex-col items-center gap-1.5 sm:flex-row sm:justify-between">
           <p className="text-center text-xs text-ink-soft">
             © {year} {fullBusinessName(business)}. สงวนลิขสิทธิ์
+          </p>
+          <p className="flex gap-4 text-xs">
+            <Link
+              href="/privacy"
+              className="text-ink-soft hover:text-brand-700 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-700"
+            >
+              นโยบายความเป็นส่วนตัว
+            </Link>
+            <Link
+              href="/terms"
+              className="text-ink-soft hover:text-brand-700 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-700"
+            >
+              ข้อกำหนดการใช้บริการ
+            </Link>
           </p>
         </Container>
       </div>
