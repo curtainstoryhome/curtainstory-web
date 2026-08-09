@@ -4,21 +4,32 @@
 
 export const CANVAS = { width: 2500, height: 1686 };
 
+// Palette pulled from the shop logo (public/images/logo.jpg): cream field,
+// sage-green C, gold S, gold hairline ring. The menu should read as the logo
+// blown up into a menu, not a generic beige grid.
 export const COLORS = {
-  background: "#f5ede1",
-  panelAlt: "#efe3d1",
-  divider: "#c9a876",
-  text: "#5a3d2b",
-  subtext: "#8a6b4f",
-  icon: "#a97c50",
+  cream: "#f7f1e6",
+  sage: "#7c8767",
+  sageDark: "#57614a",
+  gold: "#c9a262",
+  goldSoft: "#dcc294",
+  overlay: "#241b10",
+  textOnPhoto: "#fdf9f0",
 };
 
+// Height of the decorative brand band drawn across the top of the image.
+// It lives INSIDE the top row's tap area (tap zones are unchanged).
+export const BRAND_BAND = 150;
+
 // 3 columns x 2 rows. bounds must exactly tile CANVAS (LINE requires this).
+// visual: { type: "photo", src } uses a real installation photo from
+// public/images; { type: "solid", bg } renders a flat brand-color CTA tile.
 export const PANELS = [
   {
     label: "ดูผลงานจริง",
     sub: "PORTFOLIO",
     icon: "photo",
+    visual: { type: "photo", src: "product-curtains-elegant.jpg" },
     bounds: { x: 0, y: 0, width: 834, height: 843 },
     action: { type: "uri", uri: "https://www.curtainstoryhome.com/portfolio" },
   },
@@ -26,6 +37,7 @@ export const PANELS = [
     label: "บริการทั้งหมด",
     sub: "SERVICES",
     icon: "grid",
+    visual: { type: "photo", src: "product-wallpaper-1.jpg" },
     bounds: { x: 834, y: 0, width: 833, height: 843 },
     action: { type: "uri", uri: "https://www.curtainstoryhome.com/services" },
   },
@@ -33,6 +45,7 @@ export const PANELS = [
     label: "ขอประเมินราคาฟรี",
     sub: "FREE QUOTE",
     icon: "tag",
+    visual: { type: "solid", bg: "sage" },
     bounds: { x: 1667, y: 0, width: 833, height: 843 },
     action: { type: "message", label: "ขอประเมินราคาฟรี", text: "ขอประเมินราคาค่ะ" },
   },
@@ -40,6 +53,7 @@ export const PANELS = [
     label: "โทรหาร้าน",
     sub: "098-910-4978",
     icon: "phone",
+    visual: { type: "solid", bg: "cream" },
     bounds: { x: 0, y: 843, width: 834, height: 843 },
     action: { type: "uri", uri: "tel:0989104978" },
   },
@@ -47,6 +61,7 @@ export const PANELS = [
     label: "ที่ตั้งร้าน",
     sub: "MAP",
     icon: "pin",
+    visual: { type: "photo", src: "proj-saransiri-91-1.jpg" },
     bounds: { x: 834, y: 843, width: 833, height: 843 },
     action: {
       type: "uri",
@@ -57,6 +72,7 @@ export const PANELS = [
     label: "เว็บไซต์",
     sub: "curtainstoryhome.com",
     icon: "globe",
+    visual: { type: "photo", src: "hero-living-room.jpg" },
     bounds: { x: 1667, y: 843, width: 833, height: 843 },
     action: { type: "uri", uri: "https://www.curtainstoryhome.com" },
   },

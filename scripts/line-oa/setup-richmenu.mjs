@@ -62,7 +62,7 @@ async function deploy() {
   const imagePath = path.join(
     path.dirname(fileURLToPath(import.meta.url)),
     "output",
-    "richmenu-2500x1686.png"
+    "richmenu-2500x1686.jpg"
   );
   const image = await readFile(imagePath).catch(() => {
     throw new Error(`Image not found at ${imagePath} — run generate-rich-menu-image.mjs first`);
@@ -79,7 +79,7 @@ async function deploy() {
   console.log("Uploading image...");
   await api(`${API_DATA}/richmenu/${richMenuId}/content`, {
     method: "POST",
-    headers: { "Content-Type": "image/png" },
+    headers: { "Content-Type": "image/jpeg" },
     body: image,
   });
 
