@@ -8,6 +8,7 @@ import ReviewMarquee from "@/components/ReviewMarquee";
 import CurtainReveal from "@/components/CurtainReveal";
 import VideoEmbed from "@/components/VideoEmbed";
 import HeroCarousel from "@/components/HeroCarousel";
+import HeroStage from "@/components/HeroStage";
 import Reveal from "@/components/Reveal";
 import { PlayIcon } from "@/components/icons";
 import { CtaGroup } from "@/components/CtaButtons";
@@ -41,14 +42,14 @@ export default async function Home() {
             itself — before any long copy. This is a business people buy with
             their eyes, and the previous order pushed the photo almost entirely
             below the fold behind a 280-character paragraph. */}
-        <Container className="flex flex-col gap-8 py-12 sm:py-16 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:items-center lg:gap-16 lg:py-16 xl:py-20">
+        <Container className="flex flex-col gap-8 py-12 sm:py-16 lg:grid lg:grid-cols-[minmax(0,1.18fr)_minmax(0,0.82fr)] lg:items-center lg:gap-14 lg:py-16 xl:py-20">
           {/* `contents` on a phone lets the two text blocks be ordered
               individually around the photo; from lg it becomes one grid cell
               so the text simply stacks in the left column beside the picture.
               Ordering three separate items inside a two-column grid is what
               scattered them across the wrong cells. */}
           <div className="contents lg:block">
-            <div className="order-1">
+            <div className="hero-rise order-1">
               <p className="flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-brand-700">
                 <span className="h-px w-7 bg-brand-400/70" />
                 {business.name}
@@ -63,7 +64,10 @@ export default async function Home() {
                 — thirteen contact buttons on this page. The floating pair in
                 the corner covers the top of the page now, so the first thing
                 someone reads is what the shop does, not a second ask. */}
-            <div className="order-3 lg:mt-8">
+            <div
+              className="hero-rise order-3 lg:mt-8"
+              style={{ "--rise-delay": "260ms" } as React.CSSProperties}
+            >
               {business.video_url && (
                 // Quiet on purpose: it tells people the video exists without
                 // competing with LINE and the phone number.
@@ -85,10 +89,17 @@ export default async function Home() {
 
           {/* 5:6 stood 184px taller than the text beside it, so `items-center`
               split that difference into empty cream above and below the copy.
-              6:5 lands within ~15px of the text column: the two sides now end
-              together and the hero stops overshooting the fold. */}
-          <div className="relative order-2 aspect-[4/3] w-full rounded-3xl shadow-[0_30px_70px_-28px_rgba(60,42,20,0.6)] lg:aspect-[6/5]">
-            <HeroCarousel alt={business.name} images={heroImages} />
+              A narrower column plus 6:5 lands the picture level with the text,
+              and the hero stops overshooting the fold. */}
+          <div
+            className="hero-rise order-2"
+            style={{ "--rise-delay": "130ms" } as React.CSSProperties}
+          >
+            <HeroStage>
+              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl lg:aspect-[6/5]">
+                <HeroCarousel alt={business.name} images={heroImages} />
+              </div>
+            </HeroStage>
           </div>
         </Container>
       </section>

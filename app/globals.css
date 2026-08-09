@@ -94,10 +94,71 @@ body {
   animation: nav-progress 1.6s ease-out forwards;
 }
 
+/* --- Hero -------------------------------------------------------------
+   The first screen introduces itself: each block rises a short distance
+   into place, one after the next, so the eye is led name → promise →
+   picture instead of meeting all four at once. Short throw, short
+   duration; anything longer reads as a splash screen. */
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-rise {
+  animation: hero-rise 0.62s cubic-bezier(0.22, 0.68, 0.32, 1) both;
+  animation-delay: var(--rise-delay, 0ms);
+}
+
+/* The photo is mounted on a surface with depth; the tilt values come from
+   the pointer (see HeroStage.tsx) and default to flat, so the card is
+   correct before any script runs and stays correct if none ever does. */
+.hero-stage {
+  perspective: 1200px;
+}
+
+.hero-frame {
+  --rx: 0deg;
+  --ry: 0deg;
+  --gx: 50%;
+  --gy: 50%;
+  transform: rotateX(var(--rx)) rotateY(var(--ry));
+  transform-style: preserve-3d;
+  transition: transform 400ms cubic-bezier(0.22, 0.68, 0.32, 1);
+  will-change: transform;
+}
+
+.hero-sheen {
+  opacity: 0;
+  background: radial-gradient(
+    38% 46% at var(--gx) var(--gy),
+    rgba(255, 251, 242, 0.5),
+    transparent 70%
+  );
+  transition: opacity 400ms ease;
+}
+
+.hero-frame[data-interactive="true"]:hover .hero-sheen {
+  opacity: 1;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee-up,
   .animate-marquee-down {
     animation: none;
+  }
+  /* The hero still arrives, just without the travel. */
+  .hero-rise {
+    animation: none;
+  }
+  .hero-frame {
+    transform: none;
+    transition: none;
   }
   /* Still shown, just without the crawl. */
   .animate-nav-progress {
