@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "line:richmenu:image": "node scripts/line-oa/generate-rich-menu-image.mjs",
+    "line:richmenu:deploy": "node --env-file=.env.local scripts/line-oa/setup-richmenu.mjs",
+    "line:friend-qr": "node scripts/line-oa/generate-friend-qr.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.4",
@@ -22,6 +25,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.3.0",
+    "qrcode": "^1.5.4",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

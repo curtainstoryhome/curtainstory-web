@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2500" height="1686">
+  <rect width="2500" height="1686" fill="#f5ede1"/>
+  
+    <rect x="0" y="0" width="834" height="843" fill="#f5ede1"/>
+    <rect x="382" y="354.5769230769231" width="70" height="52.5" rx="10" fill="none" stroke="#a97c50" stroke-width="7"/>
+        <circle cx="417" cy="383.5" r="16" fill="none" stroke="#a97c50" stroke-width="7"/>
+        <rect x="403" y="344.5769230769231" width="28" height="14" rx="4" fill="#a97c50"/>
+    <text x="417" y="491.5" font-family="Tahoma, 'Leelawadee UI', 'Segoe UI', sans-serif" font-size="52" font-weight="600" fill="#5a3d2b" text-anchor="middle">ดูผลงานจริง</text>
+    <text x="417" y="539.5" font-family="Tahoma, 'Leelawadee UI', 'Segoe UI', sans-serif" font-size="30" letter-spacing="2" fill="#8a6b4f" text-anchor="middle">PORTFOLIO</text>
+  
+
+    <rect x="834" y="0" width="833" height="843" fill="#efe3d1"/>
+    <rect x="1210.5" y="341.5" width="34" height="34" rx="6" fill="none" stroke="#a97c50" stroke-width="7"/><rect x="1254.5" y="341.5" width="34" height="34" rx="6" fill="none" stroke="#a97c50" stroke-width="7"/><rect x="1210.5" y="385.5" width="34" height="34" rx="6" fill="none" stroke="#a97c50" stroke-width="7"/><rect x="1254.5" y="385.5" width="34" height="34" rx="6" fill="none" stroke="#a97c50" stroke-width="7"/>
+    <text x="1250.5" y="491.5" font-family="Tahoma, 'Leelawadee UI', 'Segoe UI', sans-serif" font-size="52" font-weight="600" fill="#5a3d2b" text-anchor="middle">บริการทั้งหมด</text>
+    <text x="1250.5" y="539.5" font-family="Tahoma, 'Leelawadee UI', 'Segoe UI', sans-serif" font-size="30" letter-spacing="2" fill="#8a6b4f" text-anchor="middle">SERVICES</text>
+  
+
+    <rect x="1667" y="0" width="833" height="843" fill="#f5ede1"/>
+    <path d="M2048.5 346.5 L2098.5 346.5 L2123.5 371.5 L2073.5 421.5 L2043.5 391.5 Z" fill="none" stroke="#a97c50" stroke-width="7" stroke-linejoin="round"/>
+        <circle cx="2085.5" cy="361.5" r="6" fill="#a97c50"/>
+    <text x="2083.5" y="491.5" font-family="Tahoma, 'Leelawadee UI', 'Segoe UI', sans-serif" font-size="52" font-weight="600" fill="#5a3d2b" text-anchor="middle">ขอประเมินราคาฟรี</text>
+    <text x="2083.5" y="539.5" font-family="Tahoma, 'Leelawadee UI', 'Segoe UI', sans-serif" font-size="30" letter-spacing="2" fill="#8a6b4f" text-anchor="middle">FREE QUOTE</text>
+  
+
+    <rect x="0" y="843" width="834" height="843" fill="#efe3d1"/>
+    <path d="M387 1186.5 q10 -8 18 2 l10 14 q4 8 -4 14 l-8 6 q10 24 30 34 l6 -8 q6 -8 14 -4 l14 10 q10 8 2 18 q-14 18 -34 8 q-38 -18 -54 -56 q-8 -20 6 -38 Z" fill="#a97c50"/>
+    <text x="417" y="1334.5" font-family="Tahoma, 'Leelawadee UI', 'Segoe UI', sans-serif" font-size="52" font-weight="600" fill="#5a3d2b" text-anchor="middle">โทรหาร้าน</text>
+    <text x="417" y="1382.5" font-family="Tahoma, 'Leelawadee UI', 'Segoe UI', sans-serif" font-size="30" letter-spacing="2" fill="#8a6b4f" text-anchor="middle">098-910-4978</text>
+  
+
+    <rect x="834" y="843" width="833" height="843" fill="#f5ede1"/>
+    <path d="M1250.5 1182.5 a30 30 0 0 1 30 30 q0 26 -30 52 q-30 -26 -30 -52 a30 30 0 0 1 30 -30 Z" fill="none" stroke="#a97c50" stroke-width="7" stroke-linejoin="round"/>
+        <circle cx="1250.5" cy="1212.5" r="11" fill="#a97c50"/>
+    <text x="1250.5" y="1334.5" font-family="Tahoma, 'Leelawadee UI', 'Segoe UI', sans-serif" font-size="52" font-weight="600" fill="#5a3d2b" text-anchor="middle">ที่ตั้งร้าน</text>
+    <text x="1250.5" y="1382.5" font-family="Tahoma, 'Leelawadee UI', 'Segoe UI', sans-serif" font-size="30" letter-spacing="2" fill="#8a6b4f" text-anchor="middle">MAP</text>
+  
+
+    <rect x="1667" y="843" width="833" height="843" fill="#efe3d1"/>
+    <circle cx="2083.5" cy="1224.5" r="40" fill="none" stroke="#a97c50" stroke-width="7"/>
+        <ellipse cx="2083.5" cy="1224.5" rx="17" ry="40" fill="none" stroke="#a97c50" stroke-width="6"/>
+        <line x1="2043.5" y1="1224.5" x2="2123.5" y2="1224.5" stroke="#a97c50" stroke-width="6"/>
+    <text x="2083.5" y="1334.5" font-family="Tahoma, 'Leelawadee UI', 'Segoe UI', sans-serif" font-size="52" font-weight="600" fill="#5a3d2b" text-anchor="middle">เว็บไซต์</text>
+    <text x="2083.5" y="1382.5" font-family="Tahoma, 'Leelawadee UI', 'Segoe UI', sans-serif" font-size="30" letter-spacing="2" fill="#8a6b4f" text-anchor="middle">curtainstoryhome.com</text>
+  
+  
+  <line x1="833.3333333333334" y1="0" x2="833.3333333333334" y2="1686" stroke="#c9a876" stroke-width="3"/>
+  <line x1="1666.6666666666667" y1="0" x2="1666.6666666666667" y2="1686" stroke="#c9a876" stroke-width="3"/>
+  <line x1="0" y1="843" x2="2500" y2="843" stroke="#c9a876" stroke-width="3"/>
+
+</svg>
