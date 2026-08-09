@@ -1,11 +1,12 @@
-// Generates the "add friend" QR code for the new OA (@410jcnxt) from its
-// permanent LINE Basic ID URL — no manager.line.biz visit needed for this part.
+// Generates the "add friend" QR code for the OA from its permanent LINE
+// Basic ID URL — no manager.line.biz visit needed for this part.
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import { mkdir } from "node:fs/promises";
 import QRCode from "qrcode";
 
-const BASIC_ID = "410jcnxt";
+// Premium ID as of 2026-08-09 (was the random @410jcnxt before purchase).
+const BASIC_ID = "curtainstoryhome";
 export const FRIEND_URL = `https://line.me/R/ti/p/%40${BASIC_ID}`;
 
 const outDir = path.join(path.dirname(fileURLToPath(import.meta.url)), "output");
