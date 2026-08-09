@@ -13,6 +13,12 @@ const outDir = path.join(path.dirname(fileURLToPath(import.meta.url)), "output")
 await mkdir(outDir, { recursive: true });
 const outPath = path.join(outDir, "friend-qr.png");
 
-await QRCode.toFile(outPath, FRIEND_URL, { width: 1000, margin: 2 });
+// Brand-colored QR: deep sage modules on the logo's cream ground — still
+// high-contrast enough for every scanner, but unmistakably the shop's.
+await QRCode.toFile(outPath, FRIEND_URL, {
+  width: 1000,
+  margin: 2,
+  color: { dark: "#57614aff", light: "#f7f1e6ff" },
+});
 console.log("Friend URL:", FRIEND_URL);
 console.log("QR written to", outPath);
