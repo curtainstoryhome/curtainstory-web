@@ -4,7 +4,15 @@ import { siteUrl } from "@/lib/site-url";
 
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const routes = ["", "/services", "/portfolio", "/about", "/contact"];
+  const routes = [
+    "",
+    "/services",
+    "/portfolio",
+    "/about",
+    "/contact",
+    "/privacy",
+    "/terms",
+  ];
   const lastModified = new Date();
   const [projects, services] = await Promise.all([
     getPublishedProjects(),
