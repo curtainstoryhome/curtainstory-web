@@ -26,9 +26,30 @@ function tileGeom(p) {
   return { x, top, width, h };
 }
 
+// Every photo goes through one grade so six different rooms, shot on
+// different days under different light, read as a single warm set:
+// saturation pulled back, a lift in brightness, then a cream veil in
+// soft-light. Without this the green wallpaper and pink swatches fight
+// the sage/gold palette.
+const GRADE = { saturation: 0.62, brightness: 1.06 };
+const VEIL = { color: "#f0dfc2", opacity: 0.22 };
+
 async function cover(src, w, h, position = "attention") {
-  return sharp(path.join(IMAGES_DIR, src))
-    .resize(Math.round(w), Math.round(h), { fit: "cover", position })
+  const W = Math.round(w);
+  const H = Math.round(h);
+  const base = await sharp(path.join(IMAGES_DIR, src))
+    .resize(W, H, { fit: "cover", position })
+    .modulate(GRADE)
+    .toBuffer();
+  return sharp(base)
+    .composite([
+      {
+        input: Buffer.from(
+          `<svg width="${W}" height="${H}"><rect width="${W}" height="${H}" fill="${VEIL.color}" opacity="${VEIL.opacity}"/></svg>`
+        ),
+        blend: "soft-light",
+      },
+    ])
     .toBuffer();
 }
 

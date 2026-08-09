@@ -41,7 +41,7 @@ export default async function Home() {
             itself — before any long copy. This is a business people buy with
             their eyes, and the previous order pushed the photo almost entirely
             below the fold behind a 280-character paragraph. */}
-        <Container className="flex flex-col gap-8 py-12 sm:py-16 lg:grid lg:grid-cols-2 lg:items-center lg:gap-14 lg:py-24">
+        <Container className="flex flex-col gap-8 py-12 sm:py-16 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:items-center lg:gap-16 lg:py-16 xl:py-20">
           {/* `contents` on a phone lets the two text blocks be ordered
               individually around the photo; from lg it becomes one grid cell
               so the text simply stacks in the left column beside the picture.
@@ -83,7 +83,11 @@ export default async function Home() {
             </div>
           </div>
 
-          <div className="relative order-2 aspect-[4/3] w-full rounded-3xl shadow-[0_30px_70px_-28px_rgba(60,42,20,0.6)] lg:aspect-[5/6]">
+          {/* 5:6 stood 184px taller than the text beside it, so `items-center`
+              split that difference into empty cream above and below the copy.
+              6:5 lands within ~15px of the text column: the two sides now end
+              together and the hero stops overshooting the fold. */}
+          <div className="relative order-2 aspect-[4/3] w-full rounded-3xl shadow-[0_30px_70px_-28px_rgba(60,42,20,0.6)] lg:aspect-[6/5]">
             <HeroCarousel alt={business.name} images={heroImages} />
           </div>
         </Container>

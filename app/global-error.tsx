@@ -6,7 +6,8 @@ import { useEffect } from "react";
 // page cannot reach, because at that point no layout, fonts or stylesheet have
 // rendered. Everything here is inline for that reason.
 const FALLBACK_PHONE = "098-910-4978";
-const FALLBACK_LINE = "https://lin.ee/zb4t3sM";
+// Permanent @curtainstoryhome address — see the note in (site)/error.tsx.
+const FALLBACK_LINE = "https://line.me/R/ti/p/%40curtainstoryhome";
 
 export default function GlobalError({
   error,

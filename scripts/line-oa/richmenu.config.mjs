@@ -47,7 +47,7 @@ export const PANELS = [
     icon: "grid",
     visual: {
       type: "strips",
-      srcs: ["proj-saransiri-91-6.jpg", "cat-wallpaper-1.jpg", "cat-blinds-1.jpg"],
+      srcs: ["proj-saransiri-91-6.jpg", "cat-wallpaper-7.jpg", "cat-blinds-4.jpg"],
       strips: ["ผ้าม่าน", "วอลล์เปเปอร์", "มู่ลี่"],
     },
     bounds: { x: 834, y: 0, width: 833, height: 843 },

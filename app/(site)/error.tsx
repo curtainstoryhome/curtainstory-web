@@ -12,7 +12,10 @@ import Link from "next/link";
 // number and LINE link are written in here rather than fetched. They are the
 // one thing that must survive when nothing else does.
 const FALLBACK_PHONE = "098-910-4978";
-const FALLBACK_LINE = "https://lin.ee/zb4t3sM";
+// The permanent @curtainstoryhome address, not a lin.ee short link: this is
+// the last contact route a customer has when the page has failed, so it must
+// not depend on a redirect that can be retired with the old account.
+const FALLBACK_LINE = "https://line.me/R/ti/p/%40curtainstoryhome";
 
 export default function SiteError({
   error,
