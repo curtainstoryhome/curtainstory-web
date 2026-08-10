@@ -4,6 +4,7 @@ import PageHero from "@/components/PageHero";
 import Container from "@/components/Container";
 import Faq from "@/components/Faq";
 import { siteUrl } from "@/lib/site-url";
+import { mapEmbedSrc } from "@/lib/geo";
 import { getBusinessInfo,
   getSiteText,
 } from "@/lib/data";
@@ -30,10 +31,6 @@ export default async function ContactPage() {
     getBusinessInfo(),
     getSiteText(),
   ]);
-  const mapEmbedSrc = `https://maps.google.com/maps?q=${encodeURIComponent(
-    business.address,
-  )}&z=15&output=embed`;
-
   // Pulled by key so every question and answer stays editable in the admin.
   // Blank answers are dropped inside <Faq>, which is how the price, lead-time
   // and warranty entries stay invisible until the shop decides its wording.
@@ -104,7 +101,7 @@ export default async function ContactPage() {
             {(() => {
               const inner = (
                 <>
-                  <span className="flex h-12 w-12 flex-none items-center justify-center rounded-full bg-brand-50 text-brand-600">
+                  <span className="flex h-12 w-12 flex-none items-center justify-center rounded-full bg-facebook/10 text-facebook">
                     <FacebookIcon />
                   </span>
                   <span>

@@ -62,15 +62,14 @@ export function ChatIcon({ className = "h-5 w-5" }: IconProps) {
   );
 }
 
+// Filled, unlike the line icons around it. This path is the Facebook "f"
+// itself, and stroking its outline drew a hollow double-lined letter that read
+// as a mistake next to the real logo people know. A brand mark is a solid
+// shape or it is nothing.
 export function FacebookIcon({ className = "h-5 w-5" }: IconProps) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
-      <path
-        d="M14.5 8.5H16V5.7c-.4-.1-1.3-.2-2.3-.2-2.3 0-3.9 1.4-3.9 4v2.3H7.3v3.1h2.5V21h3.1v-6.1h2.5l.4-3.1h-2.9V9.9c0-.9.3-1.4 1.6-1.4Z"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinejoin="round"
-      />
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path d="M14.5 8.5H16V5.7c-.4-.1-1.3-.2-2.3-.2-2.3 0-3.9 1.4-3.9 4v2.3H7.3v3.1h2.5V21h3.1v-6.1h2.5l.4-3.1h-2.9V9.9c0-.9.3-1.4 1.6-1.4Z" />
     </svg>
   );
 }

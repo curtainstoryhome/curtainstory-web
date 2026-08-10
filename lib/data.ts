@@ -11,6 +11,37 @@ import type {
   ServiceImageRow,
 } from "@/lib/types";
 
+// The admin's image fields hold whatever URL was last saved into them, and an
+// absolute URL on our own domain is the one shape <Image> cannot render: the
+// optimizer rejects every host missing from next.config's remotePatterns, so
+// the LINE QR on /contact came back 400 and drew as a broken image on the live
+// site — and threw outright in dev.
+//
+// Uploads live on Supabase storage and nowhere else, so that host is the only
+// absolute URL worth keeping. Everything else is one of our own files spelled
+// the long way; reduce it to a path, which the optimizer always accepts.
+// Deliberately NOT compared against siteUrl: that resolves to the .vercel.app
+// fallback in dev and on previews, so the check would pass in production and
+// fail everywhere the shop's own domain is not the deployment domain.
+const storageHost = (() => {
+  try {
+    return new URL(process.env.NEXT_PUBLIC_SUPABASE_URL!).hostname;
+  } catch {
+    return "";
+  }
+})();
+
+function asLocalAsset(value: string): string {
+  if (!value?.startsWith("http")) return value;
+  try {
+    const url = new URL(value);
+    if (url.hostname === storageHost) return value;
+    return `${url.pathname}${url.search}`;
+  } catch {
+    return value;
+  }
+}
+
 export async function getBusinessInfo(): Promise<BusinessInfo> {
   const supabase = await createClient();
   const { data, error } = await supabase
@@ -18,7 +49,7 @@ export async function getBusinessInfo(): Promise<BusinessInfo> {
     .select("*")
     .single();
   if (error || !data) throw new Error("Failed to load business info");
-  return data;
+  return { ...data, line_qr_image: asLocalAsset(data.line_qr_image) };
 }
 
 export async function getServices(): Promise<ServiceRow[]> {

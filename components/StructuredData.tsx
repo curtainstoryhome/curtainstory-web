@@ -1,5 +1,6 @@
 import type { BusinessInfo, ServiceRow } from "@/lib/types";
 import { fullBusinessName } from "@/lib/business-name";
+import { shopGeo } from "@/lib/geo";
 
 // JSON-LD is how Google understands that this is a local business with a
 // phone number, address and service list — it drives the map pack and rich
@@ -41,14 +42,12 @@ export default function StructuredData({
       postalCode: "10310",
       addressCountry: "TH",
     },
-    // Taken from the shop's own Google Maps pin (the map_url below resolves to
-    // these exact coordinates), not estimated from the street address. This is
-    // what lets the shop surface for "ร้านผ้าม่าน ใกล้ฉัน" in the map pack.
-    // If the shop ever moves, re-resolve map_url and update these together.
+    // The shop's real pin, not an estimate off the street address — this is
+    // what lets it surface for "ร้านผ้าม่าน ใกล้ฉัน" in the map pack. Shared
+    // with the contact page's embedded map; see lib/geo.ts.
     geo: {
       "@type": "GeoCoordinates",
-      latitude: 13.78625,
-      longitude: 100.5930833,
+      ...shopGeo,
     },
     ...(business.map_url ? { hasMap: business.map_url } : {}),
     // Copied from the shop's own Google Business Profile, which is the single

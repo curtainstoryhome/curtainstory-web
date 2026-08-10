@@ -19,6 +19,7 @@
 
   --color-brand-800: #55401d;
   --color-line: #04833a;
+  --color-facebook: #1877f2;
 }
 
 @theme inline {
@@ -40,6 +41,7 @@
 
   --color-brand-800: var(--color-brand-800);
   --color-line: var(--color-line);
+  --color-facebook: var(--color-facebook);
 
   --font-heading: var(--font-kanit);
   --font-sans: var(--font-sarabun);
