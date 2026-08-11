@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Kanit, Sarabun } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { getBusinessInfo } from "@/lib/data";
 import { fullBusinessName } from "@/lib/business-name";
 import { siteUrl } from "@/lib/site-url";
+import { googleAdsId, gtagSrc, gtagInit } from "@/lib/google-ads";
 
 const kanit = Kanit({
   variable: "--font-kanit",
@@ -113,6 +115,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="flex min-h-screen flex-col bg-cream font-sans text-ink antialiased">
         {children}
       </body>
+      {/* Google Ads tag. `afterInteractive` rather than Google's plain async
+          <script>: the page paints first and the tag loads a beat later, which
+          keeps the ad money from paying for a slower page. Google's snippet
+          measures the same either way. The inline half needs an id of its own
+          or next/script cannot dedupe it across navigations. */}
+      <Script id="gtag-src" src={gtagSrc} strategy="afterInteractive" />
+      <Script id={`gtag-init-${googleAdsId}`} strategy="afterInteractive">
+        {gtagInit}
+      </Script>
     </html>
   );
 }
