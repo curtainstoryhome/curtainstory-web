@@ -4,7 +4,7 @@ import PageHero from "@/components/PageHero";
 import Container from "@/components/Container";
 import Faq from "@/components/Faq";
 import { siteUrl } from "@/lib/site-url";
-import { mapEmbedSrc } from "@/lib/geo";
+import { mapEmbedSrc, directionsUrl } from "@/lib/geo";
 import { getBusinessInfo,
   getSiteText,
 } from "@/lib/data";
@@ -160,6 +160,21 @@ export default async function ContactPage() {
                   {business.address}
                 </span>
               </span>
+            </a>
+
+            {/* Separate from the address card above, which opens the listing to
+                read. This one starts navigation, and it aims at the listing
+                rather than the address text — a house number down a soi that
+                Google cannot resolve is exactly how a customer ends up in the
+                right neighbourhood and still cannot find the shop. */}
+            <a
+              href={directionsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-brand-700 px-6 text-sm font-semibold text-white shadow-[0_2px_8px_-3px_rgba(109,83,39,0.4)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-800 hover:shadow-[0_10px_20px_-8px_rgba(109,83,39,0.5)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-700 active:translate-y-0"
+            >
+              <PinIcon className="h-4 w-4" />
+              นำทางไปร้านด้วย Google Maps
             </a>
           </div>
 
