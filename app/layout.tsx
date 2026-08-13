@@ -5,7 +5,7 @@ import "./globals.css";
 import { getBusinessInfo } from "@/lib/data";
 import { fullBusinessName } from "@/lib/business-name";
 import { siteUrl } from "@/lib/site-url";
-import { googleAdsId, gtagSrc, gtagInit } from "@/lib/google-ads";
+import { googleTagIds, gtagSrc, gtagInit } from "@/lib/google-ads";
 
 const kanit = Kanit({
   variable: "--font-kanit",
@@ -121,7 +121,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           measures the same either way. The inline half needs an id of its own
           or next/script cannot dedupe it across navigations. */}
       <Script id="gtag-src" src={gtagSrc} strategy="afterInteractive" />
-      <Script id={`gtag-init-${googleAdsId}`} strategy="afterInteractive">
+      <Script id={`gtag-init-${googleTagIds.join("-")}`} strategy="afterInteractive">
         {gtagInit}
       </Script>
     </html>
