@@ -5,7 +5,15 @@ import "./globals.css";
 import { getBusinessInfo } from "@/lib/data";
 import { fullBusinessName } from "@/lib/business-name";
 import { siteUrl } from "@/lib/site-url";
-import { googleTagIds, gtagSrc, gtagInit } from "@/lib/google-ads";
+import {
+  googleTagIds,
+  gtagSrc,
+  gtagInit,
+  gtmId,
+  gtmInit,
+  gtmNoscriptSrc,
+  conversionHelper,
+} from "@/lib/google-ads";
 
 const kanit = Kanit({
   variable: "--font-kanit",
@@ -113,6 +121,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="th" className={`${kanit.variable} ${sarabun.variable}`}>
       <body className="flex min-h-screen flex-col bg-cream font-sans text-ink antialiased">
+        {/* GTM's no-JavaScript fallback. Google's snippet puts it first inside
+            <body>; it is invisible and costs nothing when scripts do run. */}
+        <noscript>
+          <iframe
+            src={gtmNoscriptSrc}
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
         {children}
       </body>
       {/* Google Ads tag. `afterInteractive` rather than Google's plain async
@@ -123,6 +141,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <Script id="gtag-src" src={gtagSrc} strategy="afterInteractive" />
       <Script id={`gtag-init-${googleTagIds.join("-")}`} strategy="afterInteractive">
         {gtagInit}
+      </Script>
+      {/* The conversion helper has to come after gtag is defined, and the GTM
+          container is independent of both — it carries whatever tags the shop
+          set up inside it on the old site. */}
+      <Script id="gtag-conversion-helper" strategy="afterInteractive">
+        {conversionHelper}
+      </Script>
+      <Script id={`gtm-${gtmId}`} strategy="afterInteractive">
+        {gtmInit}
       </Script>
     </html>
   );

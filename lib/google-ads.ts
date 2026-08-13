@@ -38,3 +38,52 @@ export const gtagInit = `window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 ${googleTagIds.map((id) => `gtag('config', '${id}');`).join("\n")}`;
+
+// --- Google Tag Manager ----------------------------------------------------
+// Carried over from the old site, which ran this container alongside gtag.
+// It is a separate system: gtag reports to Google Ads directly, while the
+// container holds whatever tags were configured inside it over the years. The
+// old site is redirecting now, so anything still living in this container only
+// keeps working if the new site loads it too.
+export const gtmId = process.env.NEXT_PUBLIC_GTM_ID || "GTM-K73CT57R";
+
+export const gtmInit = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','${gtmId}');`;
+
+// GTM's fallback for browsers without JavaScript. Google's own snippet puts
+// this immediately after <body>.
+export const gtmNoscriptSrc = `https://www.googletagmanager.com/ns.html?id=${gtmId}`;
+
+// --- Conversion reporting --------------------------------------------------
+// The old site fired this on its contact actions. The label is the second half
+// of send_to and is what tells Google Ads *which* conversion happened — the
+// account can count phone taps and LINE opens only if something sends it.
+//
+// Exposed as a global so any button can call it: gtag_report_conversion() to
+// just report, or gtag_report_conversion(url) to report and then navigate once
+// Google has acknowledged (or after a timeout, so a slow tag never traps a
+// customer on the page).
+export const conversionLabel =
+  process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_LABEL ||
+  "AW-10892676599/jnhJCMSqup0aEPebhMoo";
+
+export const conversionHelper = `function gtag_report_conversion(url) {
+  var fired = false;
+  var go = function () {
+    if (fired) return;
+    fired = true;
+    if (typeof url !== 'undefined') { window.location = url; }
+  };
+  // Never let a blocked or slow tag hold up the tap.
+  setTimeout(go, 1000);
+  gtag('event', 'conversion', {
+    'send_to': '${conversionLabel}',
+    'value': 1.0,
+    'currency': 'THB',
+    'event_callback': go
+  });
+  return false;
+}`;
