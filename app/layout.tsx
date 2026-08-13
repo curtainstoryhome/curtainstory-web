@@ -12,8 +12,8 @@ import {
   gtmId,
   gtmInit,
   gtmNoscriptSrc,
-  conversionHelper,
 } from "@/lib/google-ads";
+import ConversionTracking from "@/components/ConversionTracking";
 
 const kanit = Kanit({
   variable: "--font-kanit",
@@ -132,6 +132,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           />
         </noscript>
         {children}
+        {/* Counts LINE and phone taps wherever they appear. */}
+        <ConversionTracking />
       </body>
       {/* Google Ads tag. `afterInteractive` rather than Google's plain async
           <script>: the page paints first and the tag loads a beat later, which
@@ -142,12 +144,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <Script id={`gtag-init-${googleTagIds.join("-")}`} strategy="afterInteractive">
         {gtagInit}
       </Script>
-      {/* The conversion helper has to come after gtag is defined, and the GTM
-          container is independent of both — it carries whatever tags the shop
-          set up inside it on the old site. */}
-      <Script id="gtag-conversion-helper" strategy="afterInteractive">
-        {conversionHelper}
-      </Script>
+      {/* The GTM container is independent of the Ads tag — it carries whatever
+          tags the shop set up inside it on the old site. */}
       <Script id={`gtm-${gtmId}`} strategy="afterInteractive">
         {gtmInit}
       </Script>

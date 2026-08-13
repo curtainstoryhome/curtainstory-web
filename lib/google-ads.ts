@@ -58,32 +58,40 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 export const gtmNoscriptSrc = `https://www.googletagmanager.com/ns.html?id=${gtmId}`;
 
 // --- Conversion reporting --------------------------------------------------
-// The old site fired this on its contact actions. The label is the second half
-// of send_to and is what tells Google Ads *which* conversion happened — the
-// account can count phone taps and LINE opens only if something sends it.
+// A conversion label is the second half of send_to and is what tells Google
+// Ads *which* action happened. Without one the account can report spend but
+// never whether the money turned into a customer.
 //
-// Exposed as a global so any button can call it: gtag_report_conversion() to
-// just report, or gtag_report_conversion(url) to report and then navigate once
-// Google has acknowledged (or after a timeout, so a slow tag never traps a
-// customer on the page).
-export const conversionLabel =
-  process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_LABEL ||
-  "AW-10892676599/jnhJCMSqup0aEPebhMoo";
+// The LINE label came across from the old site, where it sat in a
+// gtag_report_conversion() helper. Its Ads conversion action is named
+// "Add LINE conversion page".
+//
+// The call label is deliberately empty, and must stay that way unless the
+// behaviour below changes. Measured in the browser: a tap on a tel: link
+// already reports a conversion on its own, without any code here — the Google
+// tag detects those clicks itself. A lin.ee tap does not, and a plain outbound
+// link (the shop's Facebook page) reports nothing at all, so this is specific
+// to tel: rather than blanket outbound-click tracking.
+//
+// The two are told apart by the value parameter: conversions this file sends
+// carry value=1&currency=THB, and the automatic one does not. Filling this in
+// would make every call count twice.
+export const conversionLabels: Record<"line" | "phone", string> = {
+  line:
+    process.env.NEXT_PUBLIC_GOOGLE_ADS_LINE_LABEL ||
+    "AW-10892676599/jnhJCMSqup0aEPebhMoo",
+  phone: process.env.NEXT_PUBLIC_GOOGLE_ADS_CALL_LABEL || "",
+};
 
-export const conversionHelper = `function gtag_report_conversion(url) {
-  var fired = false;
-  var go = function () {
-    if (fired) return;
-    fired = true;
-    if (typeof url !== 'undefined') { window.location = url; }
-  };
-  // Never let a blocked or slow tag hold up the tap.
-  setTimeout(go, 1000);
-  gtag('event', 'conversion', {
-    'send_to': '${conversionLabel}',
-    'value': 1.0,
-    'currency': 'THB',
-    'event_callback': go
-  });
-  return false;
-}`;
+// gtag.js defines this global once the snippet in app/layout.tsx has run.
+// Declared here, next to everything else that knows about Google's tag, so the
+// call sites do not each have to re-assert it.
+declare global {
+  interface Window {
+    gtag?: (
+      command: "event" | "config" | "js",
+      target: string,
+      params?: Record<string, unknown>
+    ) => void;
+  }
+}
