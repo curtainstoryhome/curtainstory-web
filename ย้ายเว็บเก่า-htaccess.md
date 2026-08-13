@@ -28,33 +28,42 @@ LiteSpeed อ่านไฟล์ `.htaccess` ได้ จึงตั้ง r
 
 ## โค้ดที่ต้องวาง
 
-เปลี่ยน `curtainstoryhome.com` เป็นโดเมนจริงถ้าใช้ชื่ออื่น
+ก็อบทั้งบล็อกนี้ได้เลย ไม่ต้องแก้อะไร (ตรวจปลายทางทุกบรรทัดแล้วเมื่อ 9 ส.ค. 2569
+เปิดได้จริงทั้งหมด ตอบ 200 ไม่มีหน้าไหนเสีย)
+
+> **ทำไมต้องมี `www.`** — เปิด `curtainstoryhome.com` เฉยๆ เว็บจะเด้งต่อไป
+> `www.curtainstoryhome.com` อีกทอด กลายเป็นเด้งสองต่อ ทำให้ช้าลงและ Google
+> ส่งคะแนนต่อได้ไม่เต็มเม็ด เขียน `www.` ไปเลยตั้งแต่แรกจะเด้งครั้งเดียวจบ
 
 ```apache
-# === ย้ายไปเว็บใหม่ CURTAIN STORY (301 ถาวร) ===
+# === ย้ายไปเว็บใหม่ CURTAIN STORY HOME (301 ถาวร) ===
 <IfModule mod_rewrite.c>
 RewriteEngine On
 
 # หน้าที่จับคู่ได้ตรงตัว — ส่งไปหน้าที่เนื้อหาตรงกัน ไม่โยนทิ้งหน้าแรก
-RewriteRule ^aboutus/?$        https://curtainstoryhome.com/about    [R=301,L]
-RewriteRule ^contactus/?$      https://curtainstoryhome.com/contact  [R=301,L]
-RewriteRule ^services/?$       https://curtainstoryhome.com/services [R=301,L]
-RewriteRule ^projects/?$       https://curtainstoryhome.com/portfolio [R=301,L]
+RewriteRule ^aboutus/?$        https://www.curtainstoryhome.com/about    [R=301,L]
+RewriteRule ^contactus/?$      https://www.curtainstoryhome.com/contact  [R=301,L]
+RewriteRule ^services/?$       https://www.curtainstoryhome.com/services [R=301,L]
 
 # ผลงาน "สราญสิริ ประชาอุทิศ" — เว็บใหม่มีหน้านี้อยู่จริง
 RewriteCond %{REQUEST_URI} ^/%E0%B8%AA%E0%B8%A3%E0%B8%B2%E0%B8%8D%E0%B8%AA%E0%B8%B4%E0%B8%A3%E0%B8%B4 [NC]
-RewriteRule ^ https://curtainstoryhome.com/portfolio/saransiri-pracha-uthit-91 [R=301,L]
+RewriteRule ^ https://www.curtainstoryhome.com/portfolio/saransiri-pracha-uthit-91 [R=301,L]
 
 # ผลงานอีกสองงานที่เว็บใหม่ยังไม่มี — ส่งไปหน้ารวมผลงาน
 RewriteCond %{REQUEST_URI} ^/%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94 [NC,OR]
 RewriteCond %{REQUEST_URI} ^/%E0%B9%84%E0%B8%97%E0%B8%A1%E0%B9%8C [NC]
-RewriteRule ^ https://curtainstoryhome.com/portfolio [R=301,L]
+RewriteRule ^ https://www.curtainstoryhome.com/portfolio [R=301,L]
 
 # ที่เหลือทั้งหมดไปหน้าแรก
-RewriteRule ^(.*)$ https://curtainstoryhome.com/ [R=301,L]
+RewriteRule ^(.*)$ https://www.curtainstoryhome.com/ [R=301,L]
 </IfModule>
 # === จบส่วนย้ายเว็บ ===
 ```
+
+> **หมายเหตุ:** เดิมมีบรรทัดสำหรับ `/projects/` ด้วย แต่ตรวจแล้วเว็บเก่า
+> **ไม่มีหน้านี้จริง** (ตอบ 404 ทั้ง `/projects` และ `/projects/`) จึงตัดออก
+> — ลิงก์ผลงานที่ Google เก็บไว้จริงคือหน้าผลงานรายชิ้น 3 หน้า ซึ่งกฎด้านบน
+> ครอบคลุมอยู่แล้ว ส่วนที่เหลือตกไปบรรทัดสุดท้ายเข้าหน้าแรก
 
 ## ตรวจว่าทำถูกไหม
 
@@ -66,6 +75,16 @@ RewriteRule ^(.*)$ https://curtainstoryhome.com/ [R=301,L]
 - `www.buitincurtains.com/services/` → หน้าบริการ
 
 ถ้าเด้งถูกทุกอัน แปลว่าเสร็จ
+
+**เช็คให้ชัวร์ว่าเด้งครั้งเดียวจริง** (ไม่ใช่เด้งสองต่อ) — เปิด Command Prompt
+แล้วพิมพ์:
+
+```bash
+curl -sI https://www.buitincurtains.com/aboutus/
+```
+
+ดูบรรทัด `location:` ต้องเป็น `https://www.curtainstoryhome.com/about` ตรงๆ
+(มี `www.` และไม่ต้องเด้งต่ออีก) และบรรทัดแรกต้องขึ้น `301`
 
 ## หลังทำเสร็จ
 
