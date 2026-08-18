@@ -23,8 +23,11 @@ import { conversionLabels } from "@/lib/google-ads";
 // would risk stranding a customer mid-tap to protect a statistic.
 export default function ConversionTracking() {
   useEffect(() => {
-    if (typeof window.gtag !== "function") return;
-    const gtag = window.gtag;
+    // The listener attaches unconditionally, and gtag is looked up when a tap
+    // actually happens rather than here. gtag.js is an afterInteractive script,
+    // so it loads *after* hydration: an effect that bailed out when the global
+    // was missing would bail on every real page load and silently never count
+    // anything — the exact failure this component was written to fix.
 
     // A double-tap on a phone should be one conversion, not two.
     const lastFired = new Map<string, number>();
@@ -44,6 +47,9 @@ export default function ConversionTracking() {
 
       const label = conversionLabels[kind];
       if (!label) return; // no conversion action configured for this one yet
+
+      const gtag = window.gtag;
+      if (typeof gtag !== "function") return;
 
       const now = Date.now();
       if (now - (lastFired.get(kind) ?? 0) < DEDUPE_MS) return;
