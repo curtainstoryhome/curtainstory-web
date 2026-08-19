@@ -13,7 +13,8 @@ import type { BusinessInfo } from "@/lib/types";
 // one screen.
 //
 // Three behaviours keep it useful without nagging:
-//   · it stays out of the hero, where the page is still introducing itself
+//   · it is there from the first paint, because a visitor who arrives from an
+//     ad has already decided to look and needs somewhere to tap
 //   · it says what it is once, then collapses to two clean icons
 //   · it hands over — whenever a real CTA block or the footer is on screen it
 //     fades out entirely, so contact is never offered twice at the same moment
@@ -22,13 +23,12 @@ export default function StickyContactBar({
 }: {
   business: BusinessInfo;
 }) {
-  const [past, setPast] = useState(false);
   const [covered, setCovered] = useState(false);
   const [expanded, setExpanded] = useState(true);
   const collapseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // One scroll listener decides both questions: are we past the hero, and is a
-  // real pair of buttons on screen right now.
+  // One scroll listener answers the only question left: is a real pair of
+  // buttons on screen right now.
   //
   // Deliberately measured with getBoundingClientRect rather than an
   // IntersectionObserver. Both work in a real browser, but only this one can be
@@ -42,7 +42,6 @@ export default function StickyContactBar({
     ];
 
     const update = () => {
-      setPast(window.scrollY > 420);
       // Hand over just before the real buttons reach the thumb.
       const limit = window.innerHeight - 80;
       setCovered(
@@ -65,14 +64,13 @@ export default function StickyContactBar({
   // Introduce itself once, then shrink to icons. Someone who has read the
   // labels does not need to keep reading them.
   useEffect(() => {
-    if (!past) return;
     collapseTimer.current = setTimeout(() => setExpanded(false), 2600);
     return () => {
       if (collapseTimer.current) clearTimeout(collapseTimer.current);
     };
-  }, [past]);
+  }, []);
 
-  const shown = past && !covered;
+  const shown = !covered;
 
   const label = (text: string) => (
     <span

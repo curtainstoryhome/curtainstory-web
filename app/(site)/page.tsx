@@ -61,9 +61,9 @@ export default async function Home() {
 
             {/* No LINE/phone pair here on purpose. It sat one swipe above the
                 same pair further down, the footer's pair and the floating pair
-                — thirteen contact buttons on this page. The floating pair in
-                the corner covers the top of the page now, so the first thing
-                someone reads is what the shop does, not a second ask. */}
+                — thirteen contact buttons on this page. The floating pair now
+                shows from the first paint rather than after 420px of scroll,
+                so the corner carries the ask and this column stays copy. */}
             <div
               className="hero-rise order-3 lg:mt-8"
               style={{ "--rise-delay": "260ms" } as React.CSSProperties}
