@@ -5,18 +5,25 @@ import PageHero from "@/components/PageHero";
 import Container from "@/components/Container";
 import { CtaGroup } from "@/components/CtaButtons";
 import { fullBusinessName } from "@/lib/business-name";
+import { og } from "@/lib/og";
 import { getBusinessInfo, getServices, getWhyUsItems,
   getSiteText,
 } from "@/lib/data";
 
 export async function generateMetadata(): Promise<Metadata> {
   const business = await getBusinessInfo();
+  const title = "เกี่ยวกับเรา";
+  const description = `รู้จัก ${business.name} ร้านผ้าม่าน วอลล์เปเปอร์ และมู่ลี่ ย่านลาดพร้าว-วังทองหลาง รับออกแบบ ตัดเย็บ และติดตั้งครบวงจร ดูแลตั้งแต่เลือกวัสดุจนติดตั้งเสร็จ`;
   return {
-    title: "เกี่ยวกับเรา",
+    title,
     // The shop's own description runs ~280 characters and Google cuts the
     // snippet near 155, so the half naming the services was never shown.
-    description: `รู้จัก ${business.name} ร้านผ้าม่าน วอลล์เปเปอร์ และมู่ลี่ ย่านลาดพร้าว-วังทองหลาง รับออกแบบ ตัดเย็บ และติดตั้งครบวงจร ดูแลตั้งแต่เลือกวัสดุจนติดตั้งเสร็จ`,
+    description,
     alternates: { canonical: "/about" },
+    openGraph: og(
+      { title, description, url: "/about" },
+      fullBusinessName(business),
+    ),
   };
 }
 

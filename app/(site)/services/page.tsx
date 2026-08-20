@@ -8,13 +8,25 @@ import { CtaGroup } from "@/components/CtaButtons";
 import { getServices, getBusinessInfo,
   getSiteText,
 } from "@/lib/data";
+import { fullBusinessName } from "@/lib/business-name";
+import { og } from "@/lib/og";
 
-export const metadata: Metadata = {
-  title: "บริการของเรา",
-  description:
-    "ผ้าม่าน วอลล์เปเปอร์ มู่ลี่ มุ้งลวด เหล็กดัด ฟิล์มกรองแสง และบริการซักผ้าม่าน โดย CURTAIN STORY HOME",
-  alternates: { canonical: "/services" },
-};
+const TITLE = "บริการของเรา";
+const DESCRIPTION =
+  "ผ้าม่าน วอลล์เปเปอร์ มู่ลี่ มุ้งลวด เหล็กดัด ฟิล์มกรองแสง และบริการซักผ้าม่าน โดย CURTAIN STORY HOME";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const business = await getBusinessInfo();
+  return {
+    title: TITLE,
+    description: DESCRIPTION,
+    alternates: { canonical: "/services" },
+    openGraph: og(
+      { title: TITLE, description: DESCRIPTION, url: "/services" },
+      fullBusinessName(business),
+    ),
+  };
+}
 
 export default async function ServicesPage() {
   const [services, business, t] = await Promise.all([

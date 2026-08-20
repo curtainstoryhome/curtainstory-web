@@ -16,6 +16,8 @@ import {
   getBusinessInfo,
   getSiteText,
 } from "@/lib/data";
+import { fullBusinessName } from "@/lib/business-name";
+import { og } from "@/lib/og";
 
 export async function generateStaticParams() {
   const projects = await getPublishedProjects();
@@ -39,13 +41,16 @@ export async function generateMetadata(
     title: `${project.title} — ผลงานติดตั้ง`,
     description: project.description,
     alternates: { canonical: `/portfolio/${project.slug}` },
-    openGraph: {
-      title: project.title,
-      description: project.description,
-      type: "article",
-      url: `/portfolio/${project.slug}`,
-      ...(cover ? { images: [{ url: cover, alt: project.title }] } : {}),
-    },
+    openGraph: og(
+      {
+        title: project.title,
+        description: project.description,
+        type: "article",
+        url: `/portfolio/${project.slug}`,
+        ...(cover ? { image: { url: cover, alt: project.title } } : {}),
+      },
+      fullBusinessName(await getBusinessInfo()),
+    ),
     ...(cover ? { twitter: { card: "summary_large_image", images: [cover] } } : {}),
   };
 }

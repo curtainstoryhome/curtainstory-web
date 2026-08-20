@@ -7,13 +7,25 @@ import { getPublishedProjects, getBusinessInfo,
   getSiteText,
   getServices,
 } from "@/lib/data";
+import { fullBusinessName } from "@/lib/business-name";
+import { og } from "@/lib/og";
 
-export const metadata: Metadata = {
-  title: "ผลงานของเรา",
-  description:
-    "รวมผลงานติดตั้งผ้าม่าน วอลล์เปเปอร์ มู่ลี่ และฉากกั้นห้องจริงจากบ้าน คอนโด และอาคารสำนักงานในกรุงเทพฯ โดย CURTAIN STORY HOME ดูรูปจริงทุกงานก่อนตัดสินใจ",
-  alternates: { canonical: "/portfolio" },
-};
+const TITLE = "ผลงานของเรา";
+const DESCRIPTION =
+  "รวมผลงานติดตั้งผ้าม่าน วอลล์เปเปอร์ มู่ลี่ และฉากกั้นห้องจริงจากบ้าน คอนโด และอาคารสำนักงานในกรุงเทพฯ โดย CURTAIN STORY HOME ดูรูปจริงทุกงานก่อนตัดสินใจ";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const business = await getBusinessInfo();
+  return {
+    title: TITLE,
+    description: DESCRIPTION,
+    alternates: { canonical: "/portfolio" },
+    openGraph: og(
+      { title: TITLE, description: DESCRIPTION, url: "/portfolio" },
+      fullBusinessName(business),
+    ),
+  };
+}
 
 export default async function PortfolioPage() {
   const [projects, business, t, services] = await Promise.all([

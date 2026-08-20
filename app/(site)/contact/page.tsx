@@ -5,6 +5,8 @@ import Container from "@/components/Container";
 import Faq from "@/components/Faq";
 import { siteUrl } from "@/lib/site-url";
 import { mapEmbedSrc, directionsUrl } from "@/lib/geo";
+import { og } from "@/lib/og";
+import { fullBusinessName } from "@/lib/business-name";
 import { getBusinessInfo,
   getSiteText,
 } from "@/lib/data";
@@ -19,10 +21,16 @@ import {
 
 export async function generateMetadata(): Promise<Metadata> {
   const business = await getBusinessInfo();
+  const title = "ติดต่อเรา";
+  const description = `ติดต่อ ${business.name} ร้านผ้าม่านย่านลาดพร้าว-วังทองหลาง โทร ${business.phone} หรือแชท LINE ให้คำปรึกษาฟรี พร้อมนัดวัดพื้นที่หน้างานถึงบ้าน`;
   return {
-    title: "ติดต่อเรา",
-    description: `ติดต่อ ${business.name} ร้านผ้าม่านย่านลาดพร้าว-วังทองหลาง โทร ${business.phone} หรือแชท LINE ให้คำปรึกษาฟรี พร้อมนัดวัดพื้นที่หน้างานถึงบ้าน`,
+    title,
+    description,
     alternates: { canonical: "/contact" },
+    openGraph: og(
+      { title, description, url: "/contact" },
+      fullBusinessName(business),
+    ),
   };
 }
 

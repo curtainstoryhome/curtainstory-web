@@ -9,6 +9,8 @@ import ProjectCarousel from "@/components/ProjectCarousel";
 import ProjectGallery from "@/components/ProjectGallery";
 import { CtaGroup } from "@/components/CtaButtons";
 import { ArrowRightIcon } from "@/components/icons";
+import { og } from "@/lib/og";
+import { fullBusinessName } from "@/lib/business-name";
 import {
   getServices,
   getServiceBySlug,
@@ -33,12 +35,15 @@ export async function generateMetadata(
     title: service.title,
     description: service.description || service.summary,
     alternates: { canonical: `/services/${service.slug}` },
-    openGraph: {
-      title: service.title,
-      description: service.description || service.summary,
-      url: `/services/${service.slug}`,
-      images: [{ url: service.image_url, alt: service.title }],
-    },
+    openGraph: og(
+      {
+        title: service.title,
+        description: service.description || service.summary,
+        url: `/services/${service.slug}`,
+        image: { url: service.image_url, alt: service.title },
+      },
+      fullBusinessName(await getBusinessInfo()),
+    ),
   };
 }
 
