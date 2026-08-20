@@ -46,6 +46,16 @@ export default async function PortfolioPage() {
         imageAlt="ตัวอย่างผลงานติดตั้งผ้าม่านจริง โดย CURTAIN STORY HOME"
       />
 
+      {/* Someone scrolling finished work is closer to deciding than anywhere
+          else on the site, and the copy made no ask until 4,791px -- 5.9
+          screens down a page 6,029px tall. data-cta-block stands the floating
+          pair down while this is on screen. */}
+      <section className="border-b border-brand-100 py-6">
+        <Container>
+          <CtaGroup business={business} />
+        </Container>
+      </section>
+
       <section className="py-14 sm:py-16">
         <Container>
           <PortfolioFilter projects={projects} services={services} />
