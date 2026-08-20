@@ -57,17 +57,18 @@ export default async function Home() {
               <h1 className="mt-4 font-heading text-[30px] font-semibold leading-[1.22] tracking-tight text-ink sm:text-[40px] lg:text-[46px]">
                 {business.tagline}
               </h1>
+              {/* The ask, directly under the promise. Measured on a 375px
+                  phone, the first pair of these in the copy sat at 6,024px --
+                  72% down, 7.4 screens -- and all six inline buttons are in
+                  the last quarter of the page. Someone arriving on a paid
+                  click had the floating pair in the corner and nothing else.
+                  data-cta-block on CtaGroup makes that floating pair stand
+                  down while this is on screen, so the two are never offered
+                  at once; scroll past the hero and the corner takes over
+                  again. */}
+              <CtaGroup business={business} className="mt-6" />
             </div>
 
-            {/* No LINE/phone pair here on purpose, and the count that argument
-                rests on, measured on a 375px phone: nine contact links exist,
-                eight of them visible — six in the copy, plus the floating pair.
-                The six all sit in the last quarter of the page (72%, 73%, 85%,
-                86%, 94%, 94%), so nothing in the copy asks for contact until a
-                reader is 7.4 screens down. The floating pair is what covers the
-                stretch above that, and it only does so because it now shows
-                from the first paint instead of after 420px of scroll. Take that
-                away and the top of this page has no ask at all. */}
             <div
               className="hero-rise order-3 lg:mt-8"
               style={{ "--rise-delay": "260ms" } as React.CSSProperties}
