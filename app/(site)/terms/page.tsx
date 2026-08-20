@@ -2,13 +2,25 @@ import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import Container from "@/components/Container";
 import { getBusinessInfo } from "@/lib/data";
+import { fullBusinessName } from "@/lib/business-name";
+import { og } from "@/lib/og";
 
-export const metadata: Metadata = {
-  title: "ข้อกำหนดการใช้บริการ",
-  description:
-    "ข้อกำหนดการใช้บริการของ CURTAIN STORY HOME — ขอบเขตการให้บริการ การประเมินราคา และเงื่อนไขการใช้เว็บไซต์",
-  alternates: { canonical: "/terms" },
-};
+const TITLE = "ข้อกำหนดการใช้บริการ";
+const DESCRIPTION =
+  "ข้อกำหนดการใช้บริการของ CURTAIN STORY HOME — ขอบเขตการให้บริการ การประเมินราคา และเงื่อนไขการใช้เว็บไซต์";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const business = await getBusinessInfo();
+  return {
+    title: TITLE,
+    description: DESCRIPTION,
+    alternates: { canonical: "/terms" },
+    openGraph: og(
+      { title: TITLE, description: DESCRIPTION, url: "/terms" },
+      fullBusinessName(business),
+    ),
+  };
+}
 
 // Static legal copy on purpose — same reasoning as the privacy page.
 export default async function TermsPage() {

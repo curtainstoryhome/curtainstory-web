@@ -2,13 +2,25 @@ import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import Container from "@/components/Container";
 import { getBusinessInfo } from "@/lib/data";
+import { fullBusinessName } from "@/lib/business-name";
+import { og } from "@/lib/og";
 
-export const metadata: Metadata = {
-  title: "นโยบายความเป็นส่วนตัว",
-  description:
-    "นโยบายความเป็นส่วนตัวของ CURTAIN STORY HOME — ข้อมูลอะไรที่เราเก็บ ใช้อย่างไร และสิทธิ์ของลูกค้าตาม พ.ร.บ. คุ้มครองข้อมูลส่วนบุคคล (PDPA)",
-  alternates: { canonical: "/privacy" },
-};
+const TITLE = "นโยบายความเป็นส่วนตัว";
+const DESCRIPTION =
+  "นโยบายความเป็นส่วนตัวของ CURTAIN STORY HOME — ข้อมูลอะไรที่เราเก็บ ใช้อย่างไร และสิทธิ์ของลูกค้าตาม พ.ร.บ. คุ้มครองข้อมูลส่วนบุคคล (PDPA)";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const business = await getBusinessInfo();
+  return {
+    title: TITLE,
+    description: DESCRIPTION,
+    alternates: { canonical: "/privacy" },
+    openGraph: og(
+      { title: TITLE, description: DESCRIPTION, url: "/privacy" },
+      fullBusinessName(business),
+    ),
+  };
+}
 
 // Static legal copy on purpose: this page is referenced from outside services
 // (LINE OA, Facebook) and must stay readable even if someone edits shop text
