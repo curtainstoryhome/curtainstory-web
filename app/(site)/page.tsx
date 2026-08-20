@@ -59,11 +59,15 @@ export default async function Home() {
               </h1>
             </div>
 
-            {/* No LINE/phone pair here on purpose. It sat one swipe above the
-                same pair further down, the footer's pair and the floating pair
-                — thirteen contact buttons on this page. The floating pair now
-                shows from the first paint rather than after 420px of scroll,
-                so the corner carries the ask and this column stays copy. */}
+            {/* No LINE/phone pair here on purpose, and the count that argument
+                rests on, measured on a 375px phone: nine contact links exist,
+                eight of them visible — six in the copy, plus the floating pair.
+                The six all sit in the last quarter of the page (72%, 73%, 85%,
+                86%, 94%, 94%), so nothing in the copy asks for contact until a
+                reader is 7.4 screens down. The floating pair is what covers the
+                stretch above that, and it only does so because it now shows
+                from the first paint instead of after 420px of scroll. Take that
+                away and the top of this page has no ask at all. */}
             <div
               className="hero-rise order-3 lg:mt-8"
               style={{ "--rise-delay": "260ms" } as React.CSSProperties}
