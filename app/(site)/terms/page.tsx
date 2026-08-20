@@ -3,7 +3,7 @@ import PageHero from "@/components/PageHero";
 import Container from "@/components/Container";
 import { getBusinessInfo } from "@/lib/data";
 import { fullBusinessName } from "@/lib/business-name";
-import { og } from "@/lib/og";
+import { og, tw } from "@/lib/og";
 
 const TITLE = "ข้อกำหนดการใช้บริการ";
 const DESCRIPTION =
@@ -19,6 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
       { title: TITLE, description: DESCRIPTION, url: "/terms" },
       fullBusinessName(business),
     ),
+    twitter: tw({ title: TITLE, description: DESCRIPTION }),
   };
 }
 

@@ -39,3 +39,19 @@ export function og(
         ],
   };
 }
+
+// `twitter` is replaced the same way `openGraph` is, and the root sets one, so
+// a page that stated neither served the root's title and description under its
+// own URL. Stated here alongside the Open Graph object so the two cannot drift.
+export function tw(page: {
+  title: string;
+  description?: string;
+  image?: { url: string; alt: string };
+}): Metadata["twitter"] {
+  return {
+    card: "summary_large_image",
+    title: page.title,
+    description: page.description,
+    images: [page.image?.url ?? "/images/hero-living-room.jpg"],
+  };
+}

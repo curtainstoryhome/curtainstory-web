@@ -5,7 +5,7 @@ import PageHero from "@/components/PageHero";
 import Container from "@/components/Container";
 import { CtaGroup } from "@/components/CtaButtons";
 import { fullBusinessName } from "@/lib/business-name";
-import { og } from "@/lib/og";
+import { og, tw } from "@/lib/og";
 import { getBusinessInfo, getServices, getWhyUsItems,
   getSiteText,
 } from "@/lib/data";
@@ -24,6 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
       { title, description, url: "/about" },
       fullBusinessName(business),
     ),
+    twitter: tw({ title: title, description: description }),
   };
 }
 

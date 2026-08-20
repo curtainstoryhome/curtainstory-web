@@ -9,7 +9,7 @@ import ProjectCarousel from "@/components/ProjectCarousel";
 import ProjectGallery from "@/components/ProjectGallery";
 import { CtaGroup } from "@/components/CtaButtons";
 import { ArrowRightIcon } from "@/components/icons";
-import { og } from "@/lib/og";
+import { og, tw } from "@/lib/og";
 import { fullBusinessName } from "@/lib/business-name";
 import {
   getServices,
@@ -44,6 +44,11 @@ export async function generateMetadata(
       },
       fullBusinessName(await getBusinessInfo()),
     ),
+    twitter: tw({
+      title: service.title,
+      description: service.description || service.summary,
+      image: { url: service.image_url, alt: service.title },
+    }),
   };
 }
 

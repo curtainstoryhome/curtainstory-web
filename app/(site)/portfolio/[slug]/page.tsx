@@ -17,7 +17,7 @@ import {
   getSiteText,
 } from "@/lib/data";
 import { fullBusinessName } from "@/lib/business-name";
-import { og } from "@/lib/og";
+import { og, tw } from "@/lib/og";
 
 export async function generateStaticParams() {
   const projects = await getPublishedProjects();
@@ -51,7 +51,11 @@ export async function generateMetadata(
       },
       fullBusinessName(await getBusinessInfo()),
     ),
-    ...(cover ? { twitter: { card: "summary_large_image", images: [cover] } } : {}),
+    twitter: tw({
+      title: project.title,
+      description: project.description,
+      ...(cover ? { image: { url: cover, alt: project.title } } : {}),
+    }),
   };
 }
 

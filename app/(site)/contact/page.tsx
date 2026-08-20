@@ -5,7 +5,7 @@ import Container from "@/components/Container";
 import Faq from "@/components/Faq";
 import { siteUrl } from "@/lib/site-url";
 import { mapEmbedSrc, directionsUrl } from "@/lib/geo";
-import { og } from "@/lib/og";
+import { og, tw } from "@/lib/og";
 import { fullBusinessName } from "@/lib/business-name";
 import { getBusinessInfo,
   getSiteText,
@@ -31,6 +31,7 @@ export async function generateMetadata(): Promise<Metadata> {
       { title, description, url: "/contact" },
       fullBusinessName(business),
     ),
+    twitter: tw({ title: title, description: description }),
   };
 }
 

@@ -8,7 +8,7 @@ import { getPublishedProjects, getBusinessInfo,
   getServices,
 } from "@/lib/data";
 import { fullBusinessName } from "@/lib/business-name";
-import { og } from "@/lib/og";
+import { og, tw } from "@/lib/og";
 
 const TITLE = "ผลงานของเรา";
 const DESCRIPTION =
@@ -24,6 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
       { title: TITLE, description: DESCRIPTION, url: "/portfolio" },
       fullBusinessName(business),
     ),
+    twitter: tw({ title: TITLE, description: DESCRIPTION }),
   };
 }
 
