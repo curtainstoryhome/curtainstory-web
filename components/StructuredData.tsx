@@ -28,8 +28,17 @@ export default function StructuredData({
     "@context": "https://schema.org",
     "@type": "HomeAndConstructionBusiness",
     "@id": `${siteUrl}/#business`,
-    name: fullBusinessName(business),
-    alternateName: business.name,
+    // The shop name on its own, not the title-bar version. Google matches this
+    // against the Google Business Profile to decide the site and that profile
+    // are one business, which is the whole point of the sameAs link below --
+    // the reviews and history there still have to carry over to the new brand.
+    // The profile is listed as CURTAIN STORY HOME, so a name here reading
+    // "CURTAIN STORY HOME | ผ้าม่าน วอลล์เปเปอร์ มู่ลี่" was a name it had to
+    // reconcile rather than recognise, and a name ending in a list of products
+    // is what keyword-stuffed listings look like. The longer form stays as the
+    // alternate, and the tab title is untouched.
+    name: business.name,
+    alternateName: fullBusinessName(business),
     description: business.description,
     url: siteUrl,
     telephone: business.phone_href.replace("tel:", ""),
