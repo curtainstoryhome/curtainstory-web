@@ -58,6 +58,15 @@ const nextConfig: NextConfig = {
         destination: "/portfolio/saransiri-pracha-uthit-91",
         permanent: true,
       },
+      // The old site's paths, pointed at their match here. The old host already
+      // 301s its own traffic, but it only does so while that domain is paid for,
+      // and its catch-all sends /projects and /about to this homepage rather than
+      // to the page a visitor was actually asking for. These cover the same paths
+      // typed or shared against this domain, which until now returned 404.
+      { source: "/projects", destination: "/portfolio", permanent: true },
+      { source: "/contactus", destination: "/contact", permanent: true },
+      { source: "/about-us", destination: "/about", permanent: true },
+      { source: "/service", destination: "/services", permanent: true },
     ];
   },
 };
