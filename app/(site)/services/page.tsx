@@ -46,6 +46,17 @@ export default async function ServicesPage() {
         imageAlt="งานผ้าม่านและงานตกแต่งหน้าต่าง โดย CURTAIN STORY HOME"
       />
 
+      {/* Sitelinks in the search ads point here, and until this the copy made
+          no ask until 4,341px -- 5.35 screens on a 375px phone, on a page only
+          5,578px tall. The floating pair covered that stretch, same as the home
+          page did before its hero got one. data-cta-block stands that pair down
+          while this is on screen. */}
+      <section className="border-b border-brand-100 py-6">
+        <Container>
+          <CtaGroup business={business} />
+        </Container>
+      </section>
+
       <section className="py-14 sm:py-16">
         <Container className="space-y-14">
           {services.map((service, index) => (
