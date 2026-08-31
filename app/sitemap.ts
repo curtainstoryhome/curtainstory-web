@@ -7,6 +7,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const routes = [
     "",
     "/services",
+    // Its own page because people search the condo problem by name — the
+    // no-drilling rule, the balcony sun — not "curtains" in general.
+    "/curtains-condo",
     "/portfolio",
     "/about",
     "/contact",
