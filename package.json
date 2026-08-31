@@ -9,7 +9,9 @@
     "lint": "eslint",
     "line:richmenu:image": "node scripts/line-oa/generate-rich-menu-image.mjs",
     "line:richmenu:deploy": "node --env-file=.env.local scripts/line-oa/setup-richmenu.mjs",
-    "line:friend-qr": "node scripts/line-oa/generate-friend-qr.mjs"
+    "line:friend-qr": "node scripts/line-oa/generate-friend-qr.mjs",
+    "line:check": "node --env-file=.env.local scripts/line-oa/check-line-oa.mjs",
+    "line:backup": "node --env-file=.env.local scripts/line-oa/backup-line-oa.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.4",

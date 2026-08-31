@@ -1,0 +1,94 @@
+{
+  "richmenus": [
+    {
+      "richMenuId": "richmenu-e46daba5cf316b1b72aace75d4ef33cb",
+      "name": "CURTAIN STORY HOME - main menu",
+      "size": {
+        "width": 2500,
+        "height": 1686
+      },
+      "chatBarText": "เมนู",
+      "selected": true,
+      "areas": [
+        {
+          "bounds": {
+            "x": 0,
+            "y": 0,
+            "width": 834,
+            "height": 843
+          },
+          "action": {
+            "label": "ดูผลงานจริง",
+            "type": "uri",
+            "uri": "https://www.curtainstoryhome.com/portfolio"
+          }
+        },
+        {
+          "bounds": {
+            "x": 834,
+            "y": 0,
+            "width": 833,
+            "height": 843
+          },
+          "action": {
+            "label": "บริการทั้งหมด",
+            "type": "uri",
+            "uri": "https://www.curtainstoryhome.com/services"
+          }
+        },
+        {
+          "bounds": {
+            "x": 1667,
+            "y": 0,
+            "width": 833,
+            "height": 843
+          },
+          "action": {
+            "label": "ขอประเมินราคาฟรี",
+            "type": "message",
+            "text": "ขอประเมินราคาค่ะ"
+          }
+        },
+        {
+          "bounds": {
+            "x": 0,
+            "y": 843,
+            "width": 834,
+            "height": 843
+          },
+          "action": {
+            "label": "โทรหาร้าน",
+            "type": "uri",
+            "uri": "tel:0989104978"
+          }
+        },
+        {
+          "bounds": {
+            "x": 834,
+            "y": 843,
+            "width": 833,
+            "height": 843
+          },
+          "action": {
+            "label": "ที่ตั้งร้าน",
+            "type": "uri",
+            "uri": "https://www.google.com/maps/place/?q=place_id:ChIJ1cOM1rqd4jARvoLDGTRNT5c"
+          }
+        },
+        {
+          "bounds": {
+            "x": 1667,
+            "y": 843,
+            "width": 833,
+            "height": 843
+          },
+          "action": {
+            "label": "เว็บไซต์",
+            "type": "uri",
+            "uri": "https://www.curtainstoryhome.com"
+          }
+        }
+      ]
+    }
+  ]
+}
