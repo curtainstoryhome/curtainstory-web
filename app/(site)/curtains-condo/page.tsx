@@ -104,7 +104,12 @@ export default async function CurtainsCondoPage() {
         eyebrow="ผ้าม่านคอนโด"
         title="ผ้าม่านคอนโด ม่านกันแดดระเบียง"
         description="วัดหน้างานฟรีถึงห้อง ไม่เจาะผนังก็ติดตั้งได้ ส่งรูปห้องมาประเมินราคาก่อนได้"
-      />
+      >
+        {/* คีย์เวิร์ดคอนโดทั้งหมดชี้มาหน้านี้แล้ว บนมือถือจอแรกเคยมีแต่ข้อความ
+            "ส่งรูปห้องมาประเมินราคาก่อนได้" โดยไม่มีอะไรให้กด ปุ่มติดต่ออยู่แค่
+            ที่มุมล่างและท้ายหน้า คนที่จ่ายเงินค่าคลิกพามาถึงแล้วต้องกดได้ทันที */}
+        <CtaGroup business={business} className="mt-6" />
+      </PageHero>
 
       <section className="py-14 sm:py-16">
         <Container className="grid gap-10 lg:grid-cols-2 lg:items-center">

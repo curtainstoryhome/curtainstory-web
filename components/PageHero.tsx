@@ -18,10 +18,15 @@ export default function PageHero({
   imageAlt,
   backHref,
   backLabel,
+  children,
 }: {
   eyebrow?: string;
   title: string;
   description?: string;
+  // Rendered under the description. Landing pages that receive paid clicks
+  // put their contact buttons here, so the first screen has something to tap
+  // and the person is not left hunting for the floating pair in the corner.
+  children?: React.ReactNode;
   image?: string;
   // The biggest photo on the page. Left empty it is invisible to image search,
   // which matters for a shop people buy with their eyes. Pass something that
@@ -57,6 +62,7 @@ export default function PageHero({
               {description}
             </p>
           )}
+          {children}
         </Container>
       </section>
     );
@@ -110,6 +116,7 @@ export default function PageHero({
             {description}
           </p>
         )}
+        {children}
       </Container>
     </section>
   );
