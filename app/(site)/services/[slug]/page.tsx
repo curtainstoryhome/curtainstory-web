@@ -95,7 +95,9 @@ export default async function ServiceDetailPage(
         imageAlt={`บริการ${service.title} โดย CURTAIN STORY HOME`}
         backHref="/services"
         backLabel="บริการทั้งหมด"
-      />
+      >
+        <CtaGroup business={business} className="mt-6" />
+      </PageHero>
 
       <section className="py-14 sm:py-16">
         <Container className="max-w-3xl">

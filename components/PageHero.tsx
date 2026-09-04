@@ -116,7 +116,15 @@ export default function PageHero({
             {description}
           </p>
         )}
-        {children}
+        {children && (
+          // The call button is drawn for the cream band: brown outline, brown
+          // text. On the photo it sat on the dark scrim at roughly 2:1 and
+          // read as disabled next to the solid green LINE button. White on
+          // dark here, same shape.
+          <div className="[&_a[href^='tel:']]:border-white [&_a[href^='tel:']]:text-white [&_a[href^='tel:']]:hover:bg-white/10 [&_a[href^='tel:']]:focus-visible:outline-white">
+            {children}
+          </div>
+        )}
       </Container>
     </section>
   );

@@ -101,7 +101,9 @@ export default async function ProjectDetailPage(
         imageAlt={`ผลงานติดตั้ง${project.title} โดย CURTAIN STORY HOME`}
         backHref="/portfolio"
         backLabel="ผลงานทั้งหมด"
-      />
+      >
+        <CtaGroup business={business} className="mt-6" />
+      </PageHero>
 
       {usedServices.length > 0 && (
         <section className="border-b border-brand-100 py-6">
