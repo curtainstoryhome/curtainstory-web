@@ -33,6 +33,30 @@ export default function ConversionTracking() {
     const lastFired = new Map<string, number>();
     const DEDUPE_MS = 2000;
 
+    // Thirty days of reports showed 362 "LINE taps" against roughly thirty
+    // new LINE followers. The gap is mostly two things: a thumb landing on the
+    // floating button while the page is still settling after an ad click, and
+    // the same visitor tapping LINE on three pages in a row. Either way the
+    // bidding system was being told those were customers. A tap in the first
+    // seconds is ignored, and each kind counts once per visit.
+    const MIN_DWELL_MS = 3000;
+    const mountedAt = Date.now();
+    const sessionKey = (kind: string) => `conversion-sent:${kind}`;
+    const alreadySentThisVisit = (kind: string) => {
+      try {
+        return sessionStorage.getItem(sessionKey(kind)) !== null;
+      } catch {
+        return false;
+      }
+    };
+    const markSentThisVisit = (kind: string) => {
+      try {
+        sessionStorage.setItem(sessionKey(kind), String(Date.now()));
+      } catch {
+        // Private mode or blocked storage: fall back to the in-memory dedupe.
+      }
+    };
+
     const onClick = (e: MouseEvent) => {
       const link = (e.target as HTMLElement | null)?.closest?.("a[href]");
       if (!link) return;
@@ -52,8 +76,11 @@ export default function ConversionTracking() {
       if (typeof gtag !== "function") return;
 
       const now = Date.now();
+      if (now - mountedAt < MIN_DWELL_MS) return;
       if (now - (lastFired.get(kind) ?? 0) < DEDUPE_MS) return;
+      if (alreadySentThisVisit(kind)) return;
       lastFired.set(kind, now);
+      markSentThisVisit(kind);
 
       gtag("event", "conversion", {
         send_to: label,
