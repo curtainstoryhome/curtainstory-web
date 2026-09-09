@@ -47,7 +47,13 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     metadataBase: new URL(siteUrl),
     title: {
-      default: fullName,
+      // The city belongs in the one line Google shows biggest. The paid search
+      // terms people actually type are "ร้านผ้าม่าน กรุงเทพ" and "ร้านผ้าม่าน
+      // ใกล้ฉัน", and the title carried no place at all — so the page competed
+      // for "ผ้าม่าน" against the whole country instead of its own city. The
+      // brand name itself is left alone: it is still what structured data, the
+      // share card and every subpage title use.
+      default: `${fullName} กรุงเทพฯ`,
       template: `%s | ${business.name}`,
     },
     description: searchSnippet,
