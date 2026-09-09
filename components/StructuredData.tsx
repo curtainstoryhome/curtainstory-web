@@ -77,9 +77,18 @@ export default function StructuredData({
       opens: "06:00",
       closes: "23:00",
     },
+    // "ปริมณฑล" is not a place anyone searches for, and a lone city name says
+    // nothing about which side of it the van actually drives to. These are the
+    // districts the shop takes jobs in and advertises in, named the way a
+    // customer would type them.
     areaServed: [
       { "@type": "City", name: "กรุงเทพมหานคร" },
-      { "@type": "AdministrativeArea", name: "ปริมณฑล" },
+      { "@type": "AdministrativeArea", name: "ลาดพร้าว" },
+      { "@type": "AdministrativeArea", name: "วังทองหลาง" },
+      { "@type": "AdministrativeArea", name: "คลองเตย" },
+      { "@type": "AdministrativeArea", name: "วัฒนา" },
+      { "@type": "AdministrativeArea", name: "สาทร" },
+      { "@type": "AdministrativeArea", name: "นนทบุรี" },
     ],
     priceRange: "฿฿",
     ...(sameAs.length ? { sameAs } : {}),
