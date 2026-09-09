@@ -10,6 +10,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Its own page because people search the condo problem by name — the
     // no-drilling rule, the balcony sun — not "curtains" in general.
     "/curtains-condo",
+    // Same reason, and one the ad account can measure: the roller blind
+    // keywords were scoring 3/10 on landing page experience and costing
+    // ฿29.54 a click against ฿1.03 on the campaign that has a page to land on.
+    "/roller-blinds",
     "/portfolio",
     "/about",
     "/contact",
