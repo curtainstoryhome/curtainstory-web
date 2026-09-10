@@ -75,7 +75,12 @@ export default function StructuredData({
         "Sunday",
       ],
       opens: "06:00",
-      closes: "23:00",
+      // The owner was asked directly on 10 Sep 2026 how late she takes
+      // customers: ten at night, because at eleven she is sometimes already
+      // asleep. The profile said eight and this said eleven, so a person
+      // searching at nine saw a closed shop while the site invited them to
+      // call, and nobody answered the ones who called at eleven.
+      closes: "22:00",
     },
     // "ปริมณฑล" is not a place anyone searches for, and a lone city name says
     // nothing about which side of it the van actually drives to. These are the
