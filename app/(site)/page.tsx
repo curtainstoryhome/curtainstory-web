@@ -134,6 +134,60 @@ export default async function Home() {
         </Container>
       </section>
 
+      {/* This page is the shop's number one organic result for "ผ้าม่านบิ้วอิน"
+          and had not used the word anywhere — the ranking rides on the old
+          brand and the domain, not on anything a reader can see. Someone who
+          searched for built-in work arrived and found no sign the shop does
+          it, and a competitor with a real page on the term takes that place
+          the moment Google reweighs the two. This says what the work is. */}
+      <section className="py-16 sm:py-20">
+        <Container>
+          <SectionHeading
+            eyebrow={t("home_builtin_eyebrow", "งานบิ้วอิน")}
+            title={t("home_builtin_title", "ผ้าม่านบิ้วอิน ซ่อนรางให้เรียบไปกับห้อง")}
+            description={t(
+              "home_builtin_desc",
+              "งานที่ผ้าม่านต้องไปด้วยกันกับงานไม้และฝ้า เราวัดหน้างานร่วมกับช่างบิ้วอินได้ตั้งแต่ก่อนปิดฝ้า",
+            )}
+          />
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              {
+                title: "รางม่านฝังฝ้า",
+                body: "ฝังรางเข้าไปในฝ้าเพดาน มองไม่เห็นหัวราง ผ้าม่านดูเหมือนไหลลงมาจากฝ้า เหมาะกับห้องสไตล์มินิมอลที่ไม่อยากให้มีอะไรยื่นออกมา",
+              },
+              {
+                title: "กล่องม่านบิ้วอิน",
+                body: "ทำกล่องปิดหัวรางให้เรียบร้อยเป็นแนวเดียวกับผนัง ใช้ได้กับห้องที่ปิดฝ้าไปแล้วและฝังรางไม่ได้",
+              },
+              {
+                title: "ไปด้วยกันกับเฟอร์นิเจอร์บิ้วอิน",
+                body: "หัวเตียง ตู้เสื้อผ้า หรือชั้นวางที่ชนขอบหน้าต่าง เราวัดเผื่อระยะให้ผ้าม่านรูดได้สุดโดยไม่ติดเฟอร์นิเจอร์",
+              },
+            ].map((item) => (
+              <div
+                key={item.title}
+                className="rounded-3xl border border-brand-100 bg-white p-6 shadow-sm"
+              >
+                <h3 className="font-heading text-lg font-semibold text-ink">
+                  {item.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-ink-soft">
+                  {item.body}
+                </p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-8 text-center text-sm text-ink-soft">
+            กำลังบิ้วอินอยู่และยังไม่ปิดฝ้า ทักมาคุยก่อนได้เลย
+            เราเข้าไปดูหน้างานร่วมกับช่างให้ฟรี
+          </p>
+          <div className="mt-6 flex justify-center">
+            <CtaGroup business={business} />
+          </div>
+        </Container>
+      </section>
+
       {business.video_url && (
         // scroll-mt keeps the heading clear of the sticky header when the
         // hero link jumps down here.
