@@ -24,6 +24,15 @@ export default function StructuredData({
     business.map_url,
   ].filter(Boolean);
 
+  // Google Ads help says a call asset's number must appear in the site source
+  // in E.164 form (+66...) to count as verified. The site only carried
+  // "0989104978", and three of the shop's call assets were disapproved as an
+  // unverified phone number (checked 15 Sep 2026).
+  const phoneDigits = business.phone_href.replace(/[^0-9+]/g, "");
+  const telephone = phoneDigits.startsWith("0")
+    ? `+66${phoneDigits.slice(1)}`
+    : phoneDigits;
+
   const data = {
     "@context": "https://schema.org",
     "@type": "HomeAndConstructionBusiness",
@@ -41,7 +50,7 @@ export default function StructuredData({
     alternateName: fullBusinessName(business),
     description: business.description,
     url: siteUrl,
-    telephone: business.phone_href.replace("tel:", ""),
+    telephone,
     image: `${siteUrl}/images/hero-living-room.jpg`,
     address: {
       "@type": "PostalAddress",
