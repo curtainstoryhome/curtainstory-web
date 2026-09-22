@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ChatIcon, PhoneIcon } from "@/components/icons";
 import type { BusinessInfo } from "@/lib/types";
+import { lineChatHref } from "@/lib/line";
 
 // A small glass dock in the bottom-right corner, in place of the full-width bar
 // that used to run across the screen.
@@ -104,7 +105,7 @@ export default function StickyContactBar({
       </a>
 
       <a
-        href={business.line_url}
+        href={lineChatHref(business)}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="แชทกับเราทาง LINE"

@@ -3,6 +3,7 @@ import Image from "next/image";
 import Container from "@/components/Container";
 import type { BusinessInfo } from "@/lib/types";
 import { fullBusinessName } from "@/lib/business-name";
+import { lineChatHref } from "@/lib/line";
 
 const navLinks = [
   { href: "/", label: "หน้าแรก" },
@@ -69,7 +70,7 @@ export default function Footer({ business }: { business: BusinessInfo }) {
             </li>
             <li>
               <a
-                href={business.line_url}
+                href={lineChatHref(business)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="-mx-2 inline-block min-h-11 rounded-lg px-2 py-2.5 hover:text-brand-600 transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-700 active:bg-brand-50"

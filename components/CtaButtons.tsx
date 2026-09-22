@@ -1,5 +1,6 @@
 import { ChatIcon, PhoneIcon } from "@/components/icons";
 import type { BusinessInfo } from "@/lib/types";
+import { lineChatHref } from "@/lib/line";
 
 type ButtonProps = { business: BusinessInfo; className?: string };
 
@@ -26,7 +27,7 @@ export function CallButton({ business, className = "" }: ButtonProps) {
 export function LineButton({ business, className = "" }: ButtonProps) {
   return (
     <a
-      href={business.line_url}
+      href={lineChatHref(business)}
       target="_blank"
       rel="noopener noreferrer"
       className={`inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-line px-6 py-3 text-sm font-semibold text-white hover:opacity-90 focus-visible:outline-line ${PRESS} ${className}`}

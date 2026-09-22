@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { getBusinessInfo } from "@/lib/data";
+import { lineChatHref } from "@/lib/line";
 
 export const metadata: Metadata = {
   title: "ไม่พบหน้าที่ต้องการ",
@@ -50,7 +51,7 @@ export default async function NotFound() {
 
       <div className="mt-8 flex flex-col gap-3 sm:flex-row">
         <a
-          href={business.line_url}
+          href={lineChatHref(business)}
           target="_blank"
           rel="noopener noreferrer"
           className="rounded-full bg-brand-700 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-800"

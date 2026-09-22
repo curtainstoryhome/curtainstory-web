@@ -7,6 +7,7 @@ import { siteUrl } from "@/lib/site-url";
 import { mapEmbedSrc, directionsUrl } from "@/lib/geo";
 import { og, tw } from "@/lib/og";
 import { fullBusinessName } from "@/lib/business-name";
+import { lineChatHref } from "@/lib/line";
 import { getBusinessInfo,
   getSiteText,
 } from "@/lib/data";
@@ -75,7 +76,7 @@ export default async function ContactPage() {
             </a>
 
             <a
-              href={business.line_url}
+              href={lineChatHref(business)}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-4 rounded-2xl border border-brand-100 bg-white p-5 shadow-sm transition-[box-shadow,transform] duration-150 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-700 active:scale-[0.99]"

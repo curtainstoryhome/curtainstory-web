@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { ChatIcon, PhoneIcon } from "@/components/icons";
 import type { BusinessInfo } from "@/lib/types";
+import { lineChatHref } from "@/lib/line";
 
 const PLEAT_TEXTURE =
   "repeating-linear-gradient(90deg, rgba(0,0,0,0.16) 0px, rgba(0,0,0,0.16) 3px, rgba(255,255,255,0.10) 3px, rgba(255,255,255,0.10) 10px, rgba(0,0,0,0.05) 10px, rgba(0,0,0,0.05) 16px)";
@@ -96,7 +97,7 @@ export default function CurtainReveal({
           className="mt-8 flex flex-wrap items-center justify-center gap-3"
         >
           <a
-            href={business.line_url}
+            href={lineChatHref(business)}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-line px-6 py-3 text-sm font-semibold text-white transition-[opacity,transform] duration-150 hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white active:scale-[0.97]"
