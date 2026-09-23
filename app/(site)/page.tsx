@@ -50,9 +50,14 @@ export default async function Home() {
               scattered them across the wrong cells. */}
           <div className="contents lg:block">
             <div className="hero-rise order-1">
-              <p className="flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-brand-700">
+              {/* Was the shop name, which the header already shows one line
+                  above. Most paid clicks land here from "ร้านผ้าม่าน" and
+                  "ร้านผ้าม่านใกล้ฉัน", and Google rated this page's landing
+                  experience below average for both (checked 24 Sep 2026):
+                  nothing on the first screen said what the shop is or where. */}
+              <p className="flex items-center gap-3 text-[13px] font-semibold tracking-[0.04em] text-brand-700">
                 <span className="h-px w-7 bg-brand-400/70" />
-                {business.name}
+                {t("home_hero_eyebrow", "ร้านผ้าม่านสั่งตัด ย่านลาดพร้าว–วังทองหลาง")}
               </p>
               <h1 className="mt-4 font-heading text-[30px] font-semibold leading-[1.22] tracking-tight text-ink sm:text-[40px] lg:text-[46px]">
                 {business.tagline}
