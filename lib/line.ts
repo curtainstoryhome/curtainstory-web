@@ -10,6 +10,10 @@ const SHOP_LINE_LINKS = ["lin.ee/7gQYrTY", "410jcnxt"];
 // quick-reply questions back straight away.
 const OPENING_MESSAGE = "สวัสดี สนใจทำผ้าม่าน ขอประเมินราคา";
 
+// For the English page. The webhook's Thai auto-reply does not fire on it, so
+// an English speaker is answered by the shop by hand rather than in Thai.
+export const OPENING_MESSAGE_EN = "Hi, I'd like a quote for curtains.";
+
 // The add-friend link was losing almost everyone: 20 Sep 2026 had ten LINE
 // taps from ads and not one message reached the shop, and 14 to 20 Sep had
 // thirty taps against two messages. Adding a friend is a finished action on
@@ -19,8 +23,11 @@ const OPENING_MESSAGE = "สวัสดี สนใจทำผ้าม่า
 //
 // Only the shop's own account is rewritten. If the link in admin settings is
 // ever changed to something else, that link is used as it is.
-export function lineChatHref(business: BusinessInfo): string {
+export function lineChatHref(
+  business: BusinessInfo,
+  message: string = OPENING_MESSAGE,
+): string {
   const url = business.line_url ?? "";
   if (!SHOP_LINE_LINKS.some((known) => url.includes(known))) return url;
-  return `https://line.me/R/oaMessage/${encodeURIComponent(SHOP_ACCOUNT_ID)}/?${encodeURIComponent(OPENING_MESSAGE)}`;
+  return `https://line.me/R/oaMessage/${encodeURIComponent(SHOP_ACCOUNT_ID)}/?${encodeURIComponent(message)}`;
 }

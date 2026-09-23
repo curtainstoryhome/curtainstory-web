@@ -14,6 +14,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // keywords were scoring 3/10 on landing page experience and costing
     // ฿29.54 a click against ฿1.03 on the campaign that has a page to land on.
     "/roller-blinds",
+    // English searches ("curtain store Bangkok") were landing on Thai pages.
+    "/en",
     "/portfolio",
     "/about",
     "/contact",

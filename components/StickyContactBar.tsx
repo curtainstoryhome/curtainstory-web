@@ -3,7 +3,22 @@
 import { useEffect, useRef, useState } from "react";
 import { ChatIcon, PhoneIcon } from "@/components/icons";
 import type { BusinessInfo } from "@/lib/types";
-import { lineChatHref } from "@/lib/line";
+import { lineChatHref, OPENING_MESSAGE_EN } from "@/lib/line";
+
+const TEXT = {
+  th: {
+    call: "โทรเลย",
+    callLabel: "โทรหาเรา",
+    line: "แชท LINE",
+    lineLabel: "แชทกับเราทาง LINE",
+  },
+  en: {
+    call: "Call",
+    callLabel: "Call us",
+    line: "LINE chat",
+    lineLabel: "Chat with us on LINE",
+  },
+};
 
 // A small glass dock in the bottom-right corner, in place of the full-width bar
 // that used to run across the screen.
@@ -21,9 +36,12 @@ import { lineChatHref } from "@/lib/line";
 //     fades out entirely, so contact is never offered twice at the same moment
 export default function StickyContactBar({
   business,
+  lang = "th",
 }: {
   business: BusinessInfo;
+  lang?: "th" | "en";
 }) {
+  const text = TEXT[lang];
   const [covered, setCovered] = useState(false);
   const [expanded, setExpanded] = useState(true);
   const collapseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -94,27 +112,35 @@ export default function StickyContactBar({
       aria-hidden={!shown}
     >
       <a
-        href={business.phone_href}
-        aria-label={`โทรหาเรา ${business.phone}`}
+        href={
+          lang === "en"
+            ? `tel:+66${business.phone_href.replace(/[^0-9]/g, "").replace(/^0/, "")}`
+            : business.phone_href
+        }
+        aria-label={`${text.callLabel} ${business.phone}`}
         tabIndex={shown ? undefined : -1}
         onFocus={() => setExpanded(true)}
         className="flex h-14 min-w-14 items-center rounded-full border border-white/60 bg-white/85 px-[15px] text-brand-700 shadow-[0_10px_30px_-10px_rgba(60,42,20,0.55)] backdrop-blur-xl transition-transform duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-700 active:scale-95"
       >
         <PhoneIcon className="h-6 w-6 flex-none" />
-        {label("โทรเลย")}
+        {label(text.call)}
       </a>
 
       <a
-        href={lineChatHref(business)}
+        href={
+          lang === "en"
+            ? lineChatHref(business, OPENING_MESSAGE_EN)
+            : lineChatHref(business)
+        }
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="แชทกับเราทาง LINE"
+        aria-label={text.lineLabel}
         tabIndex={shown ? undefined : -1}
         onFocus={() => setExpanded(true)}
         className="flex h-14 min-w-14 items-center rounded-full bg-line px-[15px] text-white shadow-[0_10px_30px_-8px_rgba(6,199,85,0.75)] transition-transform duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-line active:scale-95"
       >
         <ChatIcon className="h-6 w-6 flex-none" />
-        {label("แชท LINE")}
+        {label(text.line)}
       </a>
     </div>
   );
